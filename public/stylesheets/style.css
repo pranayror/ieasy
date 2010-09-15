@@ -1,0 +1,195 @@
+
+body {
+	padding:0;
+	margin:0;
+	background:#fff;
+	color:#fff;
+	font-size:11px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+div, p, ul, h1, h2, h3, img, form, span {
+	padding:0;
+	margin:0;
+}
+ul {
+	list-style-type:none;
+}
+.clear {
+	clear:both;
+	margin:0;
+	padding:0;
+}
+img {
+	padding:0;
+	margin:0;
+	border:0;
+}
+/*  ------ Wrapper css starts here -------  */
+#wrapper {
+	width:100%;
+	margin:0;
+	padding:0;
+}
+#wrapper_main {
+	width:1000px;
+	margin:0 auto;
+	padding:0;
+}
+.header {
+	width:1000px;
+	float: left;
+	height:120px;
+}
+.logo {
+	width:233px;
+	height:86px;
+	float:left;
+	margin-left:10px;
+	margin-top:15px;
+}
+/*.menu {
+	width:1000px;
+	float: left;
+	height:32px;
+}
+.menu ul{ list-style:none; margin:0; padding:0;}
+.menu li{ display:block; float:left; margin:10px 2px 10px 0px; height:32px;}
+.menu li a{ background:#5286bd; color:#fff; border:2px solid #3d7fc6; border-bottom:none; font-size:14px; text-decoration:none; font-weight:bold; padding:5px 19px 6px 18px;}
+.menu li a:hover{ background:#000;}
+.menu li a.active{ background:#000;}*/
+.black {
+	width:998px;
+	float: left;
+	height:34px;
+	background:#000;
+}
+.container {
+	width:1000px;
+	float:left;
+	margin-top:10px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.container h1 {
+	
+	font-weight:normal;
+	font-size:24px;
+	width:984px;
+
+	float:left;
+	height:50px;
+	padding-top:15px;
+	 background:#d1e2ff;
+	  border-bottom:1px solid #000;
+    margin-top:10px;
+	color:#303030;
+	padding-left:10px;
+}
+
+/* ......menu css starts here......*/
+#sddm {
+	margin: 0;
+	padding: 0 0 34px 0;
+	z-index: 30;
+	position:relative;
+	width:993px;
+	background:url(../images/bg.png) repeat-x bottom left;
+	float:left;
+}
+#sddm ul {
+	margin: 0;
+	padding: 0;
+	float:left;
+}
+#sddm li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-right:2px;
+	float: left;
+	font: bold 11px arial
+}
+#sddm li a {
+	display: block;
+	margin: 0 0px 0 0;
+	padding: 8px 24px 8px 19px;
+	font-size:14px;
+	background:#5286bd;
+	color:#fff;
+	border:2px solid #3d7fc6;
+	border-bottom:none;
+	text-align: center;
+	text-decoration: none
+}
+#sddm li a:hover {
+	background: #000000
+}
+#sddm li a.active {
+	background: #000000
+}
+#sddm div {
+	position: absolute;
+	visibility: hidden;
+	left:0;
+	float:left;
+	
+	margin: 0;
+	color: #fff;
+	padding: 0;
+}
+#sddm div ul {
+	list-style:none;
+	margin:0;
+	padding:0
+}
+#sddm div li {
+	display:block;
+	background:url(../images/arrow.png) left center no-repeat;
+	padding-bottom:5px;
+	padding-top:5px;
+}
+#sddm div li.none {
+	background:none;
+}
+#sddm div a {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	width: auto;
+	white-space: nowrap;
+	float:left;
+	text-align: left;
+	text-decoration: none;
+	background: none;
+	border:none;
+	font-weight:bold;
+	color: #fff;
+	font: 14px arial
+}
+#sddm div a:hover {
+	background: none;
+	color: #FFF
+}
+
+
+/*----- bank css starts -----*/
+
+.bank{ float:left; width:1000px; margin-top:15px; color:#fff; padding:0; }
+.titletab{  background:#0f62b9; height:30px; color:#fff;  font-size:12px; font-weight:bold;}
+
+.titletab:hover{  background:#5286bd; height:30px; cursor:pointer;}
+.activetab{background:#5286bd; height:30px; cursor:pointer;font-size:12px; font-weight:bold;}
+.tabcolor{font-size:12px; font-weight:bold; color:#000;}
+
+
+/*----- report css starts -----*/
+.report{float:left; width:1000px; margin-top:15px; color:#fff; padding:0;}
+.report ul{padding:0; margin-top:60px; margin-left:25px;}
+.report li{ display:block; background:url(../images/4.png) no-repeat top left; line-height:22px;}
+.report li a{ font-family:Verdana, Arial, Helvetica, sans-serif; color:#26488d; font-size:12px; font-weight: bold; text-decoration:none; padding-left:30px;}
+.report li a:hover{ color:#b40c03;}
+.report h1{ margin:0; padding:0; height:36px; width:246px; float:left; background:none;}
+.reportfinance{float:left; width:246px; margin-left:54px;}
+.reportinvoice{float:left; width:246px;margin-left:64px;}
+.reportdocement{float:left; width:246px;margin-left:74px;}
+

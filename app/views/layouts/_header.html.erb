@@ -1,0 +1,22 @@
+
+<div id="header">
+  <div class="container container_pricing">
+    <div class="logoarea">
+      <div class="logo"> <%= link_to image_tag("/images/logo.png"),root_path %></div>
+      <div class="phone">
+	  
+	  <% if current_user.blank? %>
+	  <%= link_to 'Signup',signup_path,{:class=>'b'} %>
+	  |
+	  <%= link_to 'Login',find_domains_path,{:class=>'b'} %>
+	  <% else %>
+	  <%= link_to 'Logout',logout_path,{:class=>'b'} %>
+	  <% end %>
+	  | <a href="#" class="b">We're Hiring!</a>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="clBoth"></div>
+<div class="clBoth"></div>

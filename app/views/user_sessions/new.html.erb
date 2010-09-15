@@ -1,0 +1,46 @@
+<div class="logintop">
+<div class="logintab">
+<div class="topplogin"></div>
+<div class="loginbg">
+<div class="logininfo">
+<div class="bg">
+<div  class="label"><%#= @user.company_name%></div>
+<span><img src="/images/default.png" alt="" /></span>
+</div>
+<div class="clear"></div>
+<div class="info">
+<div class="left">
+<% form_for @user_session, :url => user_session_path do |f| %>
+<p>Enter your information below to log in.</p>
+<div class="clear"></div>
+ <%= f.error_messages %>
+<p>
+<label>User Name :</label>
+<span> <%= f.text_field :login %></span>
+</p>
+<div class="clear"></div>
+<p>
+<label>Password :</label>
+<span><%= f.password_field :password %></span>
+</p>
+<div class="clear"></div>
+<p>
+<label></label>
+<span><%= image_submit_tag "/images/login.png" %></span></p>
+<div class="clear"></div>
+<p>
+<label></label>
+<span> <a href="#">Forgot your Password</a></span></p>
+</div>
+<div class="right">
+<label></label>
+<span>This website is protected by 256-bit SSL security </span>
+<%end%>
+</div>
+</div>
+
+</div>
+</div>
+<div class="btnlogin"></div>
+</div>
+</div>

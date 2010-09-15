@@ -31,7 +31,14 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
+   map.resource :user_session
+   map.resource :users
+   map.login '/login', :controller => "user_sessions", :action => "new" # optional, this just sets the root route
+   map.logout '/logout', :controller => "user_sessions", :action => "destroy" # optional, this just sets the root route
+   map.find_domains '/find_domains', :controller => "user_sessions", :action => "find_domains" # optional, this just sets the root route
+   map.signup '/signup', :controller => "users", :action => "new" # optional, this just sets the root route
+   map.root :controller => "home", :action => "index" # optional, this just sets the root route
+
 
   # See how all your routes lay out with "rake routes"
 

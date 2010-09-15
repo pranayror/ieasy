@@ -1,0 +1,45 @@
+<div class="logintop">
+<div class="logintab">
+<div class="topplogin"></div>
+<div class="loginbg">
+<div class="logininfo">
+<div class="bg">
+<div  class="label"><%= @user.company_name%></div>
+<span><img src="/images/default.png" alt="" /></span>
+</div>
+<div class="clear"></div>
+<div class="info">
+<div class="left">
+<form action="/user_sessions/login" method="post" name="form">
+<p>Enter your information below to log in.</p>
+<div class="clear"></div>
+<p>
+<label>User Name :</label>
+<span><input name="username" type="text" /></span>
+</p>
+<div class="clear"></div>
+<p>
+<label>Password :</label>
+<span><input name="password" type="text" /></span>
+</p>
+<div class="clear"></div>
+<p>
+<label></label>
+<span>  <%= f.submit "Login" %></span></p>
+<div class="clear"></div>
+<p>
+<label></label>
+<span> <a href="#">Forgot your Password</a></span></p>
+</div>
+<div class="right">
+<label></label>
+<span>This website is protected by 256-bit SSL security </span>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+<div class="btnlogin"></div>
+</div>
+</div>

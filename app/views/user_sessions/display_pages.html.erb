@@ -1,0 +1,15 @@
+<div>
+<% if @pages.blank?%>
+<h1> No pages were found with this email </h1>
+<% else %>
+<div align="center">
+ <h2>Login Page Found</h2>
+ <p>The following iEasy systems were found with accounts using the email<br/>
+    address you entered. To login to your system select your login page below.</p>
+<% for page in @pages%>
+ <%= link_to page.company_name+"-Click here to login...",:action =>"login" ,:controller => "user_sessions", :id => page.id  %>
+  <br/>
+ <% end %> 
+ </div>
+<% end %>
+

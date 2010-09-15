@@ -1,0 +1,98 @@
+body {
+	background:#fcf9ca;
+	margin:0;
+	padding:0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.clear {
+	clear:both;
+}
+.logintop {
+	width:748px;
+	margin: 0 auto;
+	padding:0;
+}
+.logintab {
+	width:748px;
+	float:left;
+	margin-top:100px;
+	padding:0;
+}
+.topplogin {
+	width:748px;
+	float:left;
+	float:left;
+	height:46px;
+	background:url("../images/toplogin.png") top left no-repeat;
+}
+.loginbg {
+	width:748px;
+	float:left;
+	float:left;
+	background:url("../images/loginbg.png") top left repeat-y;
+}
+.logininfo {
+	width:620px;
+	float:left;
+	
+	margin-left:65px;
+}
+.bg {
+	width:600px;
+	float:left;
+	background:#2761f3;
+	margin-top:10px;
+	padding:10px;
+}
+.bg .label {
+	float:left;
+	width:440px;
+	margin:0;
+	padding:0;
+	color:#fff;
+	font-size:18px;
+	font-weight:bold;
+	vertical-align:bottom;
+}
+.bg span {
+	float:left;
+	width:150px;
+	margin-left:10px;
+	padding:0
+}
+.btnlogin {
+	width:748px;
+	float:left;
+	height:59px;
+	background:url("../images/btnlogin.png") top left no-repeat;
+}
+.info {
+	width:600px;
+	float:left;
+	margin-top:20px;
+	padding:10px;
+	color:#3a3a3b;
+	font-size:12px;
+	font-weight:normal;
+}
+.info a{ text-decoration:underline; color:#274990;}
+.info a:hover{ text-decoration:none;}
+.info p{ margin:0; padding-bottom:10px;}
+.info .left {
+	float:left;
+	width:360px;
+}
+.info .left  label{ float:left; width:100px; text-align:right; margin-top:10px;}
+.info .left  span{float:left; width:160px; margin-left:10px;margin-top:10px;}
+.info .right {
+	float:left;
+	width:200px;
+	margin-top:30px;
+	
+
+
+	
+}
+.info .right label{background:url(../images/lock.png)  top left no-repeat;float:left; width:16px; height:16px;}
+.info .right span{float:left; margin-left:10px; width:160px;}
+

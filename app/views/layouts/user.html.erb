@@ -1,0 +1,81 @@
+<html>
+<head>
+
+<title>IEasy Project</title>
+
+<%= stylesheet_link_tag 'style','styles'%>
+<%= javascript_include_tag 'menu' %>
+<!--[if IE]>
+<%= stylesheet_link_tag 'all-ie'%>
+<![endif]-->
+</head>
+<body>
+div  id="wrapper">
+  <div  id="wrapper_main">
+    <%= render :partial =>'layouts/header'%>
+    <div class="clear"></div>
+    <ul id="sddm">
+  <li><a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()" class="active">Home</a> </li>
+  <li><a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Clients</a> </li>
+  <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Invoices</a>
+    <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+      <ul>
+        <li class="none"><a href="#">Invoice </a></li>
+        <li><a href="#">Recurring</a> </li>
+        <li ><a href="#">Received </a></li>
+        <li><a href="#">Items</a> </li>
+        <li><a href="#">Payment History</a> </li>
+      </ul>
+    </div>
+  </li>
+  <li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">Bank</a>
+    <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+      <ul>
+        <li class="none"><a href="#">Upload Bank Statement</a></li>
+        <li><a href="#">View List of all Uploaded Bank Statements </a></li>
+        <li><a href="#">View Unallocated Items</a></li>
+      </ul>
+    </div>
+  </li>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Credit Card</a>
+ 
+  </li>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Cash Expenses</a>
+ 
+  </li>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Wages</a>
+   
+  </li>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Documents</a>
+   
+  </li>
+  <li style="margin:0px;"><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Reports</a>
+  
+  
+  </li>
+</ul>
+    <!--<div class="menu">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Clients</a></li>
+        <li><a href="#">Invoices</a></li>
+        <li><a href="#">Bank</a></li>
+        <li><a href="#">Credit Cards</a></li>
+        <li><a href="#">Cash Expenses</a></li>
+        <li><a href="#">Wages</a></li>
+        <li><a href="#">Documents</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </div>-->
+  <!--  <div class="clear"></div>
+    <div class="black"></div>-->
+    <div class="clear"></div>
+    <div class="container">
+    <h1>Recent Activity</h1>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>
