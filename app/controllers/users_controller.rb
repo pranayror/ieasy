@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save!
-       current_user_session.destroy
+      current_user_session.destroy
+      UserProfile.create(:user_id=>@user.id)
       flash[:notice] = "Account registered!"
-      #redirect_to root_url
       redirect_to find_domains_path
     else
       render :action => :new
@@ -45,7 +45,14 @@ class UsersController < ApplicationController
     end
   
     def profile
-        @user = @current_user
+       
+        @user = current_user
+        @user_profile = current_user.user_profile
+        #~ render :text=> current_user.user_profile and return
+          if request.post?
+            @user.update_attributes(params[:user])
+            @user_profile.update_attributes(params[:user_profile])
+          end
     end
   
 end

@@ -1,0 +1,57 @@
+
+<div class="container container_pricing">
+
+<div class="pricing_select_r">
+		<% form_for @user,:url=>profile_users_path ,:html=>{:id=>"subscribe_form",:method=>:post} do |f| %>
+					 <label >Company Name</label>
+					 <%= f.text_field :company_name %>
+                     <br />
+					 <label>Email</label>
+					 <%= f.text_field :package_email %>
+                     <br />
+					 
+					 <% fields_for :user_profile do |profile| %>
+					 <br />
+					 <label for="Name">Country</label>
+					 <%= profile.country_select :country%>
+					 <label for="Name">Profession</label>
+					 <%= profile.text_field :profession_id,:value=>1%>
+                     <br />
+                     <br />
+					<label for="Name">Address</label>
+					 <%= profile.text_field :address%>
+                     <br />
+					 <label for="Name"></label>
+					 <%= profile.text_field :address1%>
+                     <br />
+					 <label for="Name"></label>
+					 <%= profile.text_field :city,:style=>'width:140px'%>
+					 <%= profile.text_field :province_state,:style=>'width:120px; margin-left:20px;'%>
+					 <%= profile.text_field :zip_code,:style=>'width:120px; margin-left:20px;'%>
+                     <br />
+					  <label for="Name">Business Phone</label>
+					 <%= profile.text_field :business_phone%>
+                      <br />
+					  <label for="Name">Mobile</label>
+					 <%= profile.text_field :mobile%>
+                     <br />
+					 <label for="Name">Fax</label>
+					 <%= profile.text_field :fax%>
+                     <br />
+					 <label for="Name">Time Zone</label>
+					 <%= profile.time_zone_select :time_zone%>
+                     <br />
+					 
+					<% end %>	
+							
+							<div id="submit_but">
+							  <input name="submit" src="images/create.png" style="margin: 0pt; width: 344px; height: 49px;" type="image" onclick="return check_domain();"><br>
+								All fields are required
+							</div>
+				  <% end %>
+				</div>
+
+
+</div>
+
+
