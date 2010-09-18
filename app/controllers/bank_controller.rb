@@ -18,7 +18,7 @@ class BankController < ApplicationController
                     bank.user_id = current_user.id
                     bank.transaction_date = row.at(0).date
                         if row.at(1).to_f < 0
-                          bank.debit = row.at(1).to_f
+                          bank.debit = ((row.at(1).to_f) * -1)
                         else
                           bank.credit = row.at(1).to_f 
                         end
@@ -31,6 +31,14 @@ class BankController < ApplicationController
  
  def list
    @bank_statements =current_user.bank_statements
-   end
+ end
+ 
+ def list_unallocated
+   @bank_statements =current_user.bank_statements
+ end 
+ 
+ def edit_statement
+   @statement = Bank.find(params[:id].to_s)
+  end
   
 end

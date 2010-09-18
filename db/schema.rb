@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100908042420) do
+ActiveRecord::Schema.define(:version => 20100917035938) do
+
+  create_table "banks", :force => true do |t|
+    t.integer  "user_id"
+    t.date     "transaction_date"
+    t.float    "credit"
+    t.float    "debit"
+    t.text     "description"
+    t.text     "vendor_client"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :default => "", :null => false
@@ -20,6 +31,23 @@ ActiveRecord::Schema.define(:version => 20100908042420) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "company_name"
+    t.integer  "profession_id"
+    t.string   "address"
+    t.string   "address1"
+    t.string   "city"
+    t.string   "province_state"
+    t.string   "zip_code"
+    t.string   "email"
+    t.string   "business_phone"
+    t.string   "mobile"
+    t.string   "time_zone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.integer  "package_id",                                           :null => false

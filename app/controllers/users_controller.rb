@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    if @user.save
+    if @user.save!
        current_user_session.destroy
       flash[:notice] = "Account registered!"
       #redirect_to root_url
@@ -39,9 +39,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def checkdomain
-    user = User.find_by_login_page_url(params[:domain])
-    !user.blank? ? "#{render :text => true}"  : "#{render :text => false}"
+    def checkdomain
+      user = User.find_by_login_page_url(params[:domain])
+      !user.blank? ? "#{render :text => true}"  : "#{render :text => false}"
+    end
+  
+    def profile
+        @user = @current_user
     end
   
 end

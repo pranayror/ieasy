@@ -10,9 +10,9 @@
 	  |
 	  <%= link_to 'Login',find_domains_path,{:class=>'b'} %>
 	  <% else %>
-	  <%= link_to 'Logout',logout_path,{:class=>'b'} %>
+	  <%= link_to 'Settings',profile_users_path,{:class=>'b'} %>
 	  |
-	  <%= link_to 'Settings',''%>
+	  <%= link_to 'Logout',logout_path,{:class=>'b'}%>
 	  <% end %>
 	  | <a href="#" class="b">We're Hiring!</a>
 	  </div>
