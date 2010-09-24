@@ -1,0 +1,110 @@
+
+<% form_for @client do |f| %>
+
+
+<h2>New Client</h2>
+Organisation <br/>
+					 <label > Organization Name </label>
+					 <%= f.text_field :organisation %>
+                     <br />
+					 <br />
+					 <label>Send Invoices</label>
+					 <%= f.check_box :send_invoices %>
+                     <br />
+					 <br />
+					
+					
+				    
+					 
+<div>
+    <% f.fields_for :client_contacts do |client| -%>
+      <%= render :partial => 'client_contact', :locals => { :f => client }  %>
+    <% end -%>
+	<div id="client_contacts" class="client_contacts"> </div>
+    <p><%= add_child_link 'Add another contact', f, :client_contacts %></p>
+  </div>						 
+					 <br />
+				
+					<label>Business Phone</label>
+					 <%= f.text_field :business_phone%>
+					 <br />
+					  <br />
+					  <label>Fax</label>
+					 <%= f.text_field :fax%>
+					 <br />
+					  <br />
+					  <label>Country</label>
+					 <%= f.country_select :country%>
+					 <br />
+					  <br />
+					  <label>street1</label>
+					 <%= f.text_field :address_street1%>
+					 <br />
+					  <br />
+					   <label>street2</label>
+					 <%= f.text_field :address_street2%>
+					 <br />
+					  <br />
+					  <label>City</label>
+					 <%= f.text_field :city %>
+					 <br />
+					  <br />
+					  <label>State</label>
+					 <%= f.text_field :state %>
+					 <br />
+					  <br />
+					  <label>Zipcode</label>
+					 <%= f.text_field :zip_code %>
+					 <br />
+					  <br />
+					  
+					  
+					  
+					  <div id="show_hide_secondary_address">
+		<a href="javascript://" >
+			<img src="/images/icon-arrow.gif" class="iconLeft" width="16" border="0" height="16">
+			<span>Show</span> secondary address
+		</a>
+	</div>	
+	
+	
+					  
+					  
+					  
+					 
+					  <div id="secondary_address_container" class="hideable" style="display: none;">
+							<label>Secondary Country</label>
+					 <%= f.country_select :secondary_country%>
+					 <br />
+					  <br />
+					  <label>street1</label>
+					 <%= f.text_field :sec_address_street1%>
+					 <br />
+					  <br />
+					   <label>street2</label>
+					 <%= f.text_field :sec_address_street2%>
+					 <br />
+					  <br />
+					  <label>City</label>
+					 <%= f.text_field :sec_city %>
+					 <br />
+					  <br />
+					  <label>State</label>
+					 <%= f.text_field :sec_state %>
+					 <br />
+					  <br />
+					  <label>Zipcode</label>
+					 <%= f.text_field :sec_zip_code %>
+					 <br />
+					  <br />
+					   </div>
+					  <label>Notes</label>
+					 <%= f.text_field :notes %>
+					 <br />
+					  <br />
+					 
+<%= submit_tag(:save)%>
+							<% end %>
+
+
+

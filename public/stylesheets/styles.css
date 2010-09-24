@@ -10,6 +10,7 @@ body {
 	margin: 0;
 	padding: 0;
 	line-height: 18px;
+	color: #000;
 }
 a:link, a:active, a:visited {
 	color: #00f;
