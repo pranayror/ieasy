@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :sub_categories
+
+  map.resources :categories
+
+  map.resources :categories
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -32,7 +38,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
    map.resource :user_session
-   map.resource :users, :member => {:profile=>:any}
+   map.resource :users, :member => {:profile=>:any,:taxes=>:any,:taxes_save=>:any}
    map.login '/login', :controller => "user_sessions", :action => "new" # optional, this just sets the root route
    map.logout '/logout', :controller => "user_sessions", :action => "destroy" # optional, this just sets the root route
    map.find_domains '/find_domains', :controller => "user_sessions", :action => "find_domains" # optional, this just sets the root route

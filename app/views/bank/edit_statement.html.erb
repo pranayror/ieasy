@@ -1,16 +1,53 @@
-<h1>Under development</h1>
+<h1>Allocate money</h1>
 <div class="clear"></div>
 <div class="bank">
 <table class="banktab" cellpadding="0" cellspacing="0" width="100%">
 	<tbody><tr>
-  <td width="8%"  class="tabcolor"><p>Transaction Date: <%= @statement.transaction_date.to_s %></p></td>
+  <td width="8%"  class="tabcolor" colspan=6><p>Transaction Date: <%= @statement.transaction_date.to_s %></p></td>
+  </tr>
+  <tr>
+  <td width="8%"  class="tabcolor" colspan=6>
+   <p>Amount: <%= (@statement.debit != nil)?number_to_currency(@statement.debit.to_f):number_to_currency(@statement.credit.to_f)%></p>
+  </td>
+  </tr>
+  <tr>
+  <td width="8%"  class="tabcolor" colspan=6>
+   <p>Unallocated Amount: <%= number_to_currency(@statement.unallocated_mny.to_f) %></p>
+  </td>
   </tr>
   <tr>
   <td width="8%"  class="tabcolor">
-   <p>Amount: <%= number_to_currency(@statement.debit.to_f) %></p>
+  <% form_for :allocate, :url => {:controller=>'bank',:action=>'allocate_money', :id=>@statement.id}, :html => { :multipart => true } do%>
+   <p>Allocate:
+      <%= text_field_tag :amount %>
+   </p>
+   <td width="8%"  class="tabcolor">
+   <p>Tax:
+    <%= collection_select :bank, :user_tax, @taxes, :id, :name,{:include_blank => false } %>
+   </p>
+   </td>
+   <td width="8%"  class="tabcolor">   
+   <p>Category:
+    <%= collection_select :bank, :category, @categories, :id, :name,{:include_blank => false } %>
+   </p>	
+   </td>
+   <td width="8%"  class="tabcolor">
+   <p>SubCategory:
+  <%= collection_select :bank, :sub_category, @sub_categories, :id, :name,{:include_blank => false } %>
+   </p>	
+   </td> 
+<td width="8%"  class="tabcolor">   
+   <p>Client:
+    <!--<%= collection_select :bank, :clients, @taxes, :id, :name,{:include_blank => false } %>-->
+   </p>	
+   </td>
+   <td width="8%"  class="tabcolor">
+   	  <%= submit_tag "submit" %>
+   </td>
+   <% end %>
   </td>
+  </tr>
 </tbody>
 </table>  
- 
 </div> 
 </div>

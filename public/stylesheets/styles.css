@@ -11,15 +11,7 @@ body {
 	padding: 0;
 	line-height: 18px;
 }
-a:link, a:active, a:visited {
-	color: #00f;
-	text-decoration: underline;
-}
-a:hover {
-	
-	color:#c42b02;
-	text-decoration: none;
-}
+
 /* blue links */
 a.b:link, a.b:active, a.b:visited {
 	color: #0660c7;
@@ -56,7 +48,7 @@ a.b:hover {
 	margin: 0 auto;
 }
 .container.container_pricing {
-	width: 955px;
+	/*width: 955px;*/
 }
 /* ===========================================
 	HEADER
@@ -151,6 +143,9 @@ a.b:hover {
 	text-align: right;
 	line-height: 24px;
 }
+.logoarea .phone a{color:#0660C7;text-decoration:none;font-weight:bold;}
+.logoarea .phone a:hover{}
+
 .fLeft {
 	float: left;
 	text-align: left;
@@ -703,7 +698,7 @@ a.no-hover:hover {
 	font-size: 12px;
 	text-align: left;
 	float: left;
-	width: 620px;
+	width: 410px;
 	padding: 15px 0;
 }
 

@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update,:index]
   
+   layout 'user',:except=>:new
+ 
+   
   def index
-    render :layout =>'user'
   end
   
   def new
     @user = User.new
+    render :layout=>'application'
   end
   
   def create
@@ -45,14 +48,27 @@ class UsersController < ApplicationController
     end
   
     def profile
-       
         @user = current_user
         @user_profile = current_user.user_profile
-        #~ render :text=> current_user.user_profile and return
           if request.post?
-            @user.update_attributes(params[:user])
-            @user_profile.update_attributes(params[:user_profile])
+            if @user.update_attributes(params[:user])
+              @user_profile.update_attributes(params[:user_profile])
+            else
+              render :action=>'profile'
+            end              
           end
     end
+  
+  def taxes
+       @user= current_user
+       @user.taxes.build 
+  end
+  
+  def taxes_save
+      @user= current_user
+      @user.update_attributes(params[:user])
+      redirect_to taxes_users_path
+  end
+  
   
 end

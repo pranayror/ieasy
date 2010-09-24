@@ -19,8 +19,10 @@ class BankController < ApplicationController
                     bank.transaction_date = row.at(0).date
                         if row.at(1).to_f < 0
                           bank.debit = ((row.at(1).to_f) * -1)
+                          bank.unallocated_mny = bank.debit
                         else
                           bank.credit = row.at(1).to_f 
+                          bank.unallocated_mny = bank.credit
                         end
                     bank.description = row.at(4).to_s('latin1') if row.at(4) != nil
                     bank.vendor_client = row.at(5).to_s('latin1') if row.at(5) != nil                   
@@ -34,11 +36,23 @@ class BankController < ApplicationController
  end
  
  def list_unallocated
-   @bank_statements =current_user.bank_statements
+   @bank_statements = Bank.find(:all, :conditions=>[" user_id = ? && unallocated_mny != 0", current_user.id])
  end 
  
  def edit_statement
    @statement = Bank.find(params[:id].to_s)
-  end
+   @taxes = current_user.taxes
+   @categories = current_user.categories
+   @sub_categories = SubCategory.find(:all)
+ end
+ 
+ def allocate_money
+   allocate_money = AmountAllocation.new(:amount=>params[:amount].to_f,:bank_id=>params[:id])
+   bank = Bank.find(params[:id])
+   bank.unallocated_mny = bank.unallocated_mny-params[:amount].to_f
+   bank.save!
+   allocate_money.save!
+   redirect_to :action=>"list_unallocated"
+end
   
 end
