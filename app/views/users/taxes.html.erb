@@ -1,0 +1,30 @@
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="innercontainer">
+        <%= render :partial=>'settingsheader' %>
+      <div class="clear"></div>
+      <div class="setting">
+        <div class="inter">
+          <h1>
+Taxes</h1>
+          <h2>Need to charge your clients tax? Customize your taxes here and reuse<br /> them on your invoices and expenses. You can have up to four different taxes. </h2>
+    <% form_for @user,:url=>{:controller=>'users',:action=>'taxes_save'} do |f| %>
+    <% f.fields_for :taxes do |tax| -%>
+      <%= render :partial => 'taxis', :locals => { :f => tax }  %>
+    <% end -%>
+	<div id="taxes" class="taxes"></div>
+    <div style="clear:both;"><%= add_child_link 'Add another tax', f, :taxes %></div>
+ <div style=" margin-left:390px; margin-top:20px;">
+ <%= f.submit 'Submit',:class=>'upgrade' %>  </div>
+ <% end -%> 
+     
+        </div>
+		
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+
+
