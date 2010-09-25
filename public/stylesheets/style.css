@@ -1,8 +1,8 @@
 body {
 	padding:0;
 	margin:0;
-	background:#fff;
-	color:#fff;
+	/*background:#fff;
+	color:#fff;*/
 	font-size:11px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 }
@@ -1076,7 +1076,7 @@ text-decoration:underline;}
 	float:left;
 	width:675px;
 	margin-left:160px;
-	margin-top:14px;
+	margin-top:45px;
 	padding:0;
 }
 .choosecolorpallate .choosecolor {
@@ -1285,6 +1285,7 @@ text-decoration:underline;}
 .colorlogo .left .leftdiv {
 	float:left;
 	margin-top:10px;
+	width:200px;
 }
 .colorlogo .left .span {
 	font-weight:bold;
@@ -1299,6 +1300,22 @@ text-decoration:underline;}
 	float:left;
 }
 .colorlogo .left .colour_selector_box {
+	background-image:url(../images/select_box.gif);
+	cursor:pointer;
+	float:left;
+	margin-left:5px;
+	height:42px;
+	width:42px;
+}
+.colorlogo .left .colour_selector_box1 {
+	background-image:url(../images/select_box.gif);
+	cursor:pointer;
+	float:left;
+	margin-left:5px;
+	height:42px;
+	width:42px;
+}
+.colorlogo .left .colour_selector_box2 {
 	background-image:url(../images/select_box.gif);
 	cursor:pointer;
 	float:left;
@@ -1360,9 +1377,11 @@ text-decoration:underline;}
 	border:1px solid #dddddd;
 	padding-top:4px;
 	margin-left:5px;
-	width:100px;
-	height:16px;
+	width:65px;
+	height:22px;
+	height:22px;
 	float:left;
+	margin-top:10px
 }
 /*---------------tempaltes css---------------*/
 

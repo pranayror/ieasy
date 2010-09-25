@@ -1,13 +1,6 @@
 module Paperclip
   module Shoulda
     module Matchers
-      # Ensures that the given instance or class has an attachment with the
-      # given name.
-      #
-      # Example:
-      #   describe User do
-      #     it { should have_attached_file(:avatar) }
-      #   end
       def have_attached_file name
         HaveAttachedFileMatcher.new(name)
       end
@@ -19,7 +12,6 @@ module Paperclip
 
         def matches? subject
           @subject = subject
-          @subject = @subject.class unless Class === @subject
           responds? && has_column? && included?
         end
 
@@ -38,7 +30,7 @@ module Paperclip
         protected
 
         def responds?
-          methods = @subject.instance_methods.map(&:to_s)
+          methods = @subject.instance_methods
           methods.include?("#{@attachment_name}") &&
             methods.include?("#{@attachment_name}=") &&
             methods.include?("#{@attachment_name}?")

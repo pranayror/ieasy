@@ -70,5 +70,21 @@ class UsersController < ApplicationController
       redirect_to taxes_users_path
   end
   
+  def color_logo
+      @user_setting= current_user.user_setting.blank? ? UserSetting.new(params[:user_setting]) : current_user.user_setting
+  end
   
+  def save_settings
+      user_setting = UserSetting.new(params[:user_setting])
+      user_setting.user_id=current_user.id
+      user_setting.save
+      redirect_to color_logo_users_path
+  end
+  
+    def update_settings
+      user_setting=current_user.user_setting
+      user_setting.update_attributes(params[:user_setting])
+      redirect_to color_logo_users_path
+    end
+    
 end
