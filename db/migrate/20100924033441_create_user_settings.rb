@@ -1,6 +1,10 @@
 class CreateUserSettings < ActiveRecord::Migration
   def self.up
     create_table :user_settings do |t|
+      t.integer :user_id
+      t.string :area1_color
+      t.string :area2_color
+      t.string :area3_color
       t.string :logo_file_name
       t.string :logo_content_type
       t.integer :logo_file_size

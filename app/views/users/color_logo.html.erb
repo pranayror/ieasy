@@ -1,0 +1,158 @@
+<%= stylesheet_link_tag 'color_picker/colorpicker','color_picker/layout'%>
+<%= javascript_include_tag 'color_picker/colorpicker','color_picker/eye','color_picker/layout' %>
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="innercontainer">
+      <%= render :partial=>'settingsheader' %>
+      <div class="clear"></div>
+      
+      <% path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
+	  <% form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+	  
+	  
+	  
+	  <div class="setting">
+        <div class="inter">
+          <h1> Colors and Logos</h1>
+          <h2>Make your account look snazzy with custom colors and logos.  </h2>
+          <div class="separator"></div>
+           <h4> Logo</h4>
+          <div class="clear"></div>
+          <div class="colorlogo">
+          <div class="system">System Logo</div>
+          <div class="browselogo">
+           <%= f.file_field :logo %>
+          <strong>
+We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will be resized to scale.
+</strong>
+          </div>
+          <div class="pic"><%= image_tag @user_setting.logo.url(:medium) if !@user_setting.logo_file_name.blank?%></div>
+          </div>
+          <div class="clear"></div>
+          <div class="colorlogo">
+          <div class="system">Invoice Logo</div>
+          <div class="browselogo">
+        <%= f.file_field :invoice_logo %>
+          <strong>
+We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will be resized to scale.
+</strong>
+          </div>
+          <div class="pic"><%= image_tag @user_setting.invoice_logo.url(:medium) if !@user_setting.invoice_logo_file_name.blank?%></div>
+          </div>
+            <div class="clear"></div>
+          <div class="colorlogo">
+          <div class="system">Quality Logo</div>
+          <div class="browselogo">
+          <%= f.file_field :quality_logo %>
+          <strong>
+We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will be resized to scale.
+</strong>
+          </div>
+          <div class="pic"><%= image_tag @user_setting.quality_logo.url(:small) if !@user_setting.quality_logo_file_name.blank?%></div>
+          </div>
+            <div class="clear"></div>
+             <div class="separator"></div>
+           <h4> Color</h4>
+             <div class="colorlogo">
+               <div class="left">
+               <div class="leftdiv">
+                <div class="span">Area 1</div>
+				<% area1_color = @user_setting.area1_color.blank? ? '#195a8c' : @user_setting.area1_color %>
+                 <div class="colour_selector_box" style="background-color:<%=area1_color%>;" ></div> 
+                 <div >
+				 <%= f.text_field 'area1_color',:value=>area1_color,:class=>"input area1_color" %>
+				 </div>
+               </div>
+               <div class="clear"></div>
+               <div class="leftdiv">
+                <div class="span">Area 2</div>
+				<% area2_color = @user_setting.area1_color.blank? ? '#dddddd' : @user_setting.area2_color %>
+				 <div class="colour_selector_box1" style="background-color:<%=area2_color%>;" ></div>
+                  <div>
+				  <%= f.text_field 'area2_color',:value=>area2_color,:class=>"input area2_color" %>
+				  </div>
+               </div>
+               <div class="clear"></div>
+               <div class="leftdiv">
+                <div class="span">Area 3</div>
+				<% area3_color = @user_setting.area1_color.blank? ? '#7295b2' : @user_setting.area3_color %>
+				 <div class="colour_selector_box2" style="background-color:<%=area3_color%>;" ></div>    
+                  <div>
+				  <%= f.text_field 'area3_color' ,:value=>area3_color,:class=>"input area3_color"%>
+				  </div>
+               </div>
+               </div>
+                 <div class="right">
+                 <div style="padding-bottom: 8px;" class="bold">Live Preview</div>
+                 <div class="preset_border" style="background:<%=area1_color%>">
+                 <div class="preset_tabmain ">
+                 <div class="preset_area1">Area 1</div>
+                 <div class="preset_nav" style="background:<%=area2_color%>">Area 2</div>
+                 <div class="preset_nav1" style="background:<%=area3_color%>">Area 3</div>
+                  <div class="clear"></div>
+                   <div class="preset_navbg" style="background:<%=area2_color%>">Area 3</div>
+                 </div>
+                 </div>
+                 </div>
+             </div>
+          
+           <div class="choosecolorpallate">
+           <div class="choosecolor">Sample Colors</div>
+           <div class="colorgallery">
+           <div class="choose1">
+           <div class="choosepreset_tabmain ">
+                 <div class="choosepreset_area1">Area 1</div>
+                 <div class="choosepreset_nav">Area 3</div>
+                 <div class="choosepreset_nav1">Area 3</div>
+                  <div class="clear"></div>
+                   <div class="choosepreset_navbg">Area 3</div>
+                </div>
+           </div>
+            <div class="choose2">
+            <div class="choosepreset_tabmain ">
+                 <div class="choosepreset_area1">Area 1</div>
+                 <div class="choosepreset_nav4">Area 3</div>
+                 <div class="choosepreset_nav3">Area 3</div>
+                  <div class="clear"></div>
+                   <div class="choosepreset_navbg1">Area 3</div>
+                </div>
+            </div>
+             <div class="choose3">
+             <div class="choosepreset_tabmain ">
+                 <div class="choosepreset_area1">Area 1</div>
+                 <div class="choosepreset_nav5">Area 3</div>
+                 <div class="choosepreset_nav6">Area 3</div>
+                  <div class="clear"></div>
+                   <div class="choosepreset_navbg2">Area 3</div>
+                </div>
+             </div>
+              <div class="choose4">
+            <div class="choosepreset_tabmain ">
+                 <div class="choosepreset_area1">Area 1</div>
+                 <div class="choosepreset_nav7">Area 3</div>
+                 <div class="choosepreset_nav8">Area 3</div>
+                  <div class="clear"></div>
+                   <div class="choosepreset_navbg3">Area 3</div>
+                </div>
+              </div>
+           </div>
+           </div>
+             <div class="clear"></div>
+          <div  style=" margin-left:400px; margin-top:20px;">
+		  <%= submit_tag 'Save' ,:class=>'upgrade' %>
+		  </div>
+        </div>
+	  
+	  
+	  <% end %>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>

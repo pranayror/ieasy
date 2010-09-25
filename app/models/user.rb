@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
    has_many :bank_statements,:class_name => 'Bank'
    has_one :user_profile
+   has_one :user_setting
    has_many :taxes,:class_name =>'UserTax'
    has_many :categories,:class_name =>'Category'
    has_many :clients, :class_name =>'Client'
