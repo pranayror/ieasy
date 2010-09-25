@@ -1,0 +1,14 @@
+<script>
+jQuery(document).ready(function () {
+jQuery('#show_hide_secondary_address').click(function() {
+  jQuery('#secondary_address_container').slideToggle("fast");  
+});
+jQuery('.assignusername').click(function() {
+alert('hi');
+  jQuery('.login_fields').slideToggle("fast");  
+});
+});
+</script>
+<div >
+<%= render :partial => 'form' %>
+</div>

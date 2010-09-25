@@ -18,6 +18,9 @@ class CreateClients < ActiveRecord::Migration
       t.string :sec_state
       t.string :sec_zip_code
       t.string :notes
+      t.boolean :archive, :default => 0
+      t.boolean :deleted, :default => 0
+      t.datetime :login_time
       t.timestamps
     end
   end

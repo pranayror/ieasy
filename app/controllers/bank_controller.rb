@@ -1,8 +1,10 @@
-  require 'parseexcel'
+include ChainSelectsHelper
+require 'parseexcel'
 class BankController < ApplicationController
   before_filter :require_user
   layout 'user'
   def index
+    @bank_statement = Bank.find(:first)
   end
   
   def new
@@ -21,7 +23,7 @@ class BankController < ApplicationController
                           bank.debit = ((row.at(1).to_f) * -1)
                           bank.unallocated_mny = bank.debit
                         else
-                          bank.credit = row.at(1).to_f 
+                          bank.credit = row.at(1).to_f 2
                           bank.unallocated_mny = bank.credit
                         end
                     bank.description = row.at(4).to_s('latin1') if row.at(4) != nil
@@ -47,11 +49,14 @@ class BankController < ApplicationController
  end
  
  def allocate_money
-   allocate_money = AmountAllocation.new(:amount=>params[:amount].to_f,:bank_id=>params[:id])
+   allocate_money = AmountAllocation.new(:amount=>params[:amount].to_f,:bank_id=>params[:id],
+                            :tax_id=>params[:bank][:user_tax].to_i,:category_id=>params[:chain_select][:category].to_i,
+                            :sub_category_id=>params[:chain_select][:sub_category].to_i,:client_id=>nil)
    bank = Bank.find(params[:id])
    bank.unallocated_mny = bank.unallocated_mny-params[:amount].to_f
    bank.save!
    allocate_money.save!
+   #render :text=>request.params[:chain_select][:category].to_i
    redirect_to :action=>"list_unallocated"
 end
   

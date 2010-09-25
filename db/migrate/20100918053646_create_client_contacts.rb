@@ -1,7 +1,7 @@
 class CreateClientContacts < ActiveRecord::Migration
   def self.up
     create_table :client_contacts do |t|
-      t.references :clients
+      t.references :client
       t.string :email, :limit => 100
       t.string :home_phone 
       t.string :mobile

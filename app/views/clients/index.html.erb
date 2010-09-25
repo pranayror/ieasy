@@ -1,0 +1,5 @@
+List of Clients <%= link_to 'New Client', new_client_path%> <br/>
+
+<%@clients.each do |client|%>
+<%= link_to client.try(:organisation), edit_client_path(client.try(:id))%><br/>
+<%end%>
