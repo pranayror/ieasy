@@ -1,0 +1,72 @@
+   <!-- Email, name, login -->
+    <div class="span-21">
+      <div class="span-7 append-1 append-bottom-1 required ta_right bold">
+        <label for="email">Email</label>
+      </div>
+      <div class="span-13 append-bottom-1">
+	   <%= f.text_field :email, :style => "width: 210px;"%>       
+      </div>
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="fname">Contact Name</label>
+      </div>
+      <div class="span-13 append-bottom-1">
+        <div class="span-5 append-half">
+		<%= f.text_field :first_name, :style=>"width: 100px;"%>         
+          <div class="example">First name</div>
+        </div>
+        <div class="span-5">
+		 <%= f.text_field :last_name, :style=>"width: 100px;"%>          
+          <div class="example">Last name</div>
+        </div>
+      </div>
+    </div>
+    <!-- Home phone, mobile -->
+    <div class="span-17">
+      <div class="span-5 append-1 append-bottom-1 ta_right bold">
+        <label for="home_phone">Home Phone</label>
+      </div>
+      <div class="span-11 append-bottom-1">
+	  <%= f.text_field :home_phone, :style=>"width: 120px;" %>       
+      </div>
+      <div class="span-5 append-1 append-bottom-1 ta_right bold">
+        <label for="mob_phone">Mobile</label>
+      </div>
+      <div class="span-11 append-bottom-1">
+         <%= f.text_field :mobile, :style=>"width: 120px;"%>		
+      </div>
+    </div>
+    <div class="clearb" style="overflow: hidden; height: 1px;"></div>
+    <!-- login -->
+    <div class="span-37 append-bottom-1">
+      <div class="span-7 append-1 ta_right bold">
+        <label for="assignusername">Login Credentials</label>
+      </div>
+      <div class="span-29">
+	  <input class="assignusername"  type="checkbox">        
+        <label for="assignusername">Assign Username and Password</label>
+        <div id="username_container" class="login_fields hideable" style="display: none;">
+          <div class="span-29 append-bottom-1 prepend-top-1">
+            <div class="span-5 append-half">
+			<%= f.text_field :user_name, :style=>"width: 100px;"%>              
+              <div class="example">Username</div>
+            </div>
+            <div class="span-5 append-half">
+			<%= f.password_field :password, :style=> "width: 100px;" %>              
+              <div class="example">New Password</div>
+            </div>
+            <div class="span-6 append-half">
+			<%#= f.password_field :password_confirmation, :style=> "width: 100px;"%>              
+              <div class="example">Confirm Password</div>
+            </div>
+          </div>
+          <div class="span-15 bg_orange" style="padding: 10px 20px 10px 10px;">
+            <input class="checkbox" id="notify_primary" name="notify_primary" type="checkbox">
+            <strong>
+            <label for="notify_primary">Send login information</label>
+            </strong> <font color="red">(not yet invited)</font><br>
+            If no password is entered, a random password will be created and sent with each invitation. </div>
+          <div class="clearb"></div>
+        </div>
+      </div>
+	  
+	  <br/>

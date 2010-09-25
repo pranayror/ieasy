@@ -4,11 +4,28 @@ jQuery('#show_hide_secondary_address').click(function() {
   jQuery('#secondary_address_container').slideToggle("fast");  
 });
 jQuery('.assignusername').click(function() {
-alert('hi');
   jQuery('.login_fields').slideToggle("fast");  
 });
 });
 </script>
-<div >
-<%= render :partial => 'form' %>
+
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="containernew ">
+
+    <div class="clBoth"></div>
+    <div class="clearb"></div>
+    <div class="help_box" id="help_box"> <a href="#"class="float_right mar_l10"><img src="/images/icon2.png"  border="0" width="19" height="19"></a> <strong>Use this page to add clients to your account.</strong> After you have added your first client you can send them invoices and
+      estimates, re-bill expenses to them, and all kinds of other good
+      things. You can also <a class="tdStyle" href="#">import clients</a> from an existing contact list. </div>
+    <br>
+    <h2 class="pt">New Client</h2>
+    <div class="clBoth"></div>
+    <%= render :partial => 'form' %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div>
+<%#= render :partial => 'form' %>
 </div>

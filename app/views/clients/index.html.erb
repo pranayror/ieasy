@@ -1,5 +1,62 @@
-List of Clients <%= link_to 'New Client', new_client_path%> <br/>
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="container">
+    <div class="listoffclients">
+    <span>List of Clients</span>
+    <label><%= link_to image_tag("/images/plus.png", :alt => ""), new_client_path%></label>	
+    </div>
+    <div class="clients">
+ <div class="arrow"> <a href="#"><img src="images/arrow2.png" alt="" /></a></div>
+    
+    <div class="iconmenu">
+<ul>
 
+<li><span> <img src="images/icon1.png" alt="" /> </span><a href="#">Archive</a></span></li>
+<li><span> <img src="images/icon2.png" alt="" /> </span><a href="#">Delete </a></span></li>
+<li><span> <img src="images/icon3.png" alt="" /> </span><a href="#">Email</a></span></li>
+<li><span> <img src="images/icon4.png" alt="" /> </span><a href="#">Invoice</a></span></li>
+</ul>
+</div>
+    
+     <div class="search">  <input name="" type="text" /> <label><a href="#"><img src="images/search.jpg" alt="" /></a></label>
+     </div>
+    </div>
+      <div class="clear"></div>
+    <div class="bank">
+    <table class="clienttab" cellpadding="0" cellspacing="0" width="100%">
+	<tbody>
+	<thead>
+	<tr>
+		<td width="5%" align="center" valign="middle"><img src="images/clienttab.jpg" alt="" /></td>
+			  <td width="25%" align="left" valign="middle"  > Oraganisation</td>
+			  <td width="20%"  ><p>Contact </p></td>
+			  <td width="26%" >Last Login</td>			  
+              <td width="24%" > Email Address</td>
+			  </tr>      
+    </thead>   
 <%@clients.each do |client|%>
-<%= link_to client.try(:organisation), edit_client_path(client.try(:id))%><br/>
-<%end%>
+  <tr>
+		<td width="5%" align="center" valign="middle"><input type="checkbox" /></td>
+			  <td width="25%" align="left" valign="middle" > <%= link_to client.try(:organisation), edit_client_path(client.try(:id))%></td>
+			  <td width="20%"> <%=client.contact%></td>
+			  <td width="26%" > --</td>			  
+              <td width="24%" ><%=client.email%></td>
+			  </tr> 
+<%end%>	
+	   
+	  
+	  <tr style="display: block;" id="subscribe">
+	  <td colspan="6" style="border-bottom: 0pt none; padding: 0pt;">			
+	  </td>
+	  </tr>
+	  
+	  
+	</tbody></table>
+    </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+
+

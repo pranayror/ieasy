@@ -1,110 +1,149 @@
-
 <% form_for @client do |f| %>
-
-
-<h2>New Client</h2>
-Organisation <br/>
-					 <label > Organization Name </label>
-					 <%= f.text_field :organisation %>
-                     <br />
-					 <br />
-					 <label>Send Invoices</label>
-					 <%= f.check_box :send_invoices %>
-                     <br />
-					 <br />
-					
-					
-				    
-					 
-<div>
-    <% f.fields_for :client_contacts do |client| -%>
-      <%= render :partial => 'client_contact', :locals => { :f => client }  %>
+<h3 class="edit-section-header icon-organization">Organization</h3>
+<div class="span-37">
+      <div class="span-7 append-1 ta_right bold">
+        <label for="organization">Organization&nbsp;Name</label>
+      </div>
+      <div class="span-26">
+	  <%= f.text_field :organisation, :style=>"width: 410px;"%>      
+      </div>
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="fname">Send Invoices By</label>
+      </div>
+      <div class="span-20 append-bottom-1">
+        <div class="span-4 append-half">
+		 <%= f.check_box :send_invoices %>          
+          <label for="pref_email">Email</label>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+	 <h3 class="edit-section-header icon-contact">Contacts</h3>	 
+	<% f.fields_for :client_contacts do |client| -%>	
+      <%= render :partial => "#{@client.new_record? ? 'contact' : 'client_contact'}", :locals => { :f => client }  %>
     <% end -%>
-	<div id="client_contacts" class="client_contacts"> </div>
-    <p><%= add_child_link 'Add another contact', f, :client_contacts %></p>
-  </div>						 
-					 <br />
-				
-					<label>Business Phone</label>
-					 <%= f.text_field :business_phone%>
-					 <br />
-					  <br />
-					  <label>Fax</label>
-					 <%= f.text_field :fax%>
-					 <br />
-					  <br />
-					  <label>Country</label>
-					 <%= f.country_select :country%>
-					 <br />
-					  <br />
-					  <label>street1</label>
-					 <%= f.text_field :address_street1%>
-					 <br />
-					  <br />
-					   <label>street2</label>
-					 <%= f.text_field :address_street2%>
-					 <br />
-					  <br />
-					  <label>City</label>
-					 <%= f.text_field :city %>
-					 <br />
-					  <br />
-					  <label>State</label>
-					 <%= f.text_field :state %>
-					 <br />
-					  <br />
-					  <label>Zipcode</label>
-					 <%= f.text_field :zip_code %>
-					 <br />
-					  <br />
-					  
-					  
-					  
-					  <div id="show_hide_secondary_address">
-		<a href="javascript://" >
-			<img src="/images/icon-arrow.gif" class="iconLeft" width="16" border="0" height="16">
-			<span>Show</span> secondary address
-		</a>
-	</div>	
-	
-	
-					  
-					  
-					  
-					 
-					  <div id="secondary_address_container" class="hideable" style="display: none;">
-							<label>Secondary Country</label>
-					 <%= f.country_select :secondary_country%>
-					 <br />
-					  <br />
-					  <label>street1</label>
-					 <%= f.text_field :sec_address_street1%>
-					 <br />
-					  <br />
-					   <label>street2</label>
-					 <%= f.text_field :sec_address_street2%>
-					 <br />
-					  <br />
-					  <label>City</label>
-					 <%= f.text_field :sec_city %>
-					 <br />
-					  <br />
-					  <label>State</label>
-					 <%= f.text_field :sec_state %>
-					 <br />
-					  <br />
-					  <label>Zipcode</label>
-					 <%= f.text_field :sec_zip_code %>
-					 <br />
-					  <br />
-					   </div>
-					  <label>Notes</label>
-					 <%= f.text_field :notes %>
-					 <br />
-					  <br />
-					 
-<%= submit_tag(:save)%>
-							<% end %>
-
-
-
+	<div id="client_contacts" class="client_contacts"> </div>  
+  </div>
+  <div class="clear"></div>
+	<span><img src="/images/icon-plus.gif" class="iconLeft" border="0" > <%= add_child_link 'Add another contact', f, :client_contacts %></span>
+	  <br/>
+       <br/>
+	          <div class="clear"></div>
+    <h3 class="edit-section-header icon-organization">Details</h3>
+    <!-- org name, send pref, business phone, fax -->
+    <div class="span-21">
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="bus_phone">Business Phone</label>
+      </div>
+      <div class="span-13 append-bottom-1">
+	  <%= f.text_field :business_phone, :style=>"width: 120px;"%>     
+      </div>
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="fax">Fax</label>
+      </div>
+      <div class="span-13 append-bottom-1">
+	  <%= f.text_field :fax, :style=>"width: 120px;"%>     
+      </div>
+    </div>
+     <div class="clear"></div>	 
+    <!-- Country, Address -->
+    <div class="span-37">
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="p_country">Country</label>
+      </div>
+      <div class="span-26 append-bottom-1">
+	  <%= f.country_select :country, '', {:include_blank => true}%>
+      </div>
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="p_street">Address</label>
+      </div>
+      <div class="span-26 append-bottom-1">
+        <div class="append-bottom-1">
+		<%= f.text_field :address_street1, :style=>"width: 420px;"%>         
+          <br>
+          <div class="example">Street 1</div>
+        </div>
+        <div class="append-bottom-1">
+         <%= f.text_field :address_street2, :style=>"width: 420px;"%>         
+          <br>
+          <div class="example">Street 2</div>
+        </div>
+        <div class="span-7">
+          <%= f.text_field :city, :style=>"width: 120px;" %>
+          <br>
+          <div class="example">City</div>
+        </div>
+        <div class="span-10">
+          <%= f.text_field :state, :style=>"width: 190px;" %>          
+          <br>
+          <div class="example">Province/State</div>
+        </div>
+        <div class="span-7">
+           <%= f.text_field :zip_code, :style=>"width: 80px;" %>
+          <br>
+          <div class="example">Postal/Zip Code</div>
+        </div>
+      </div>
+    </div>		
+    <!-- secondary address -->
+    <div class="span-37">
+      <div id="show_hide_secondary_address" class="span 26 prepend-8 append-bottom-1"> <a href="javascript://" ><img src="/images/icon-arrow.gif" class="iconLeft" width="16" border="0" height="16"><span>Show</span> secondary address</a></div>	  
+      <div id="secondary_address_container" class="hideable" style="display: none;">
+        <div class="span-7 append-1 append-bottom-1 ta_right bold">
+          <label for="s_country">Secondary Country</label>
+        </div>
+        <div class="span-26 append-bottom-1">
+          <%= f.country_select :secondary_country, '', {:include_blank => true}%>
+        </div>		
+        <div class="span-7 append-1 append-bottom-1 ta_right bold">
+          <label for="s_street">Secondary Address</label>
+        </div>
+        <div class="span-26 append-bottom-1">
+          <div class="append-bottom-1">
+		   <%= f.text_field :sec_address_street1, :style => "width: 420px;"%>            
+            <br>
+            <div class="example">Street 1</div>
+          </div>
+          <div class="append-bottom-1">
+		  <%= f.text_field :sec_address_street2, :style => "width: 420px;"%>
+		   <br>
+            <div class="example">Street 2</div>
+          </div>
+          <div class="span-7">
+		  <%= f.text_field :sec_city, :style => "width: 120px;" %>          
+            <br>
+            <div class="example">City</div>
+          </div>
+          <div class="span-10">           
+           <%= f.text_field :sec_state, :style => "width: 190px;" %>
+            <br>
+            <div class="example">Province/State</div>
+          </div>
+          <div class="span-7">
+		  <%= f.text_field :sec_zip_code, :style => "width: 80px;" %>          
+            <br>
+            <div class="example">Postal/Zip Code</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- notes -->
+    <div class="span-37 append-bottom-1">  
+      <div class="span-7 append-1 append-bottom-1 ta_right bold">
+        <label for="note">Internal Notes</label>
+      </div>
+      <div class="span-26 append-bottom-1">
+	  <%= f.text_area :notes, :rows=>"5", :style => "width: 320px;"%>        
+      </div>
+    </div>
+     <div class="clear"></div>
+    <div class="edit-end"></div>
+    <table align="center" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td>
+		  <%= image_submit_tag("/images/save.png")%>		 </td>
+        </tr>
+      </tbody>
+    </table>
+	<%end%>
