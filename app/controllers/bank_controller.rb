@@ -4,7 +4,8 @@ class BankController < ApplicationController
   before_filter :require_user
   layout 'user'
   def index
-    @bank_statement = Bank.find(:first)
+    #@bank_statement = Bank.find(:first,:order => "updated_at DESC", :limit => 1 )
+    @bank_statement = Bank.find(1)
   end
   
   def new
@@ -42,16 +43,17 @@ class BankController < ApplicationController
  end 
  
  def edit_statement
-   @statement = Bank.find(params[:id].to_s)
+   @statement = Bank.find(params[:id])
    @taxes = current_user.taxes
    @categories = current_user.categories
    @sub_categories = SubCategory.find(:all)
+   @clients = current_user.clients
  end
  
  def allocate_money
    allocate_money = AmountAllocation.new(:amount=>params[:amount].to_f,:bank_id=>params[:id],
-                            :tax_id=>params[:bank][:user_tax].to_i,:category_id=>params[:chain_select][:category].to_i,
-                            :sub_category_id=>params[:chain_select][:sub_category].to_i,:client_id=>nil)
+                            :user_tax_id=>params[:bank][:user_tax].to_i,:category_id=>params[:chain_select][:category].to_i,
+                            :sub_category_id=>params[:chain_select][:sub_category].to_i,:client_id=>params[:bank][:client])
    bank = Bank.find(params[:id])
    bank.unallocated_mny = bank.unallocated_mny-params[:amount].to_f
    bank.save!

@@ -42,14 +42,45 @@
 		      <% else %>
 		       &nbsp;
 		     <%end%>
+			 </td>
+			 <td width="5%" class="tabcolor" >
+			  <% if i==0 %>
+			      <% if @bank_statement.credit != 0 %>
+				    <%=@bank_statement.credit%>
+				  <% else %>	
+			      --
+				  <% end %>
+		      <% else %>
+                 &nbsp;
+			  <% end %>
 			  </td>
-			  <td width="5%" class="tabcolor" >--</td>
-			  <td width="7%" class="tabcolor"> $1000.00
-</td>
-					<td width="6%" class="tabcolor" > $200.00
-              <td width="7%" class="tabcolor" >--</td>
-			  <td width="11%"  rel="59" class="tabcolor">John Smith</td>
-              <td width="7%"  rel="59" class="tabcolor"> Category 1</td>
+			  <td width="5%" class="tabcolor" >
+			  <% if i==0 %>
+			      <% if @bank_statement.debit != 0 %>
+				    <%=@bank_statement.debit%>
+				  <% else %>	
+			      --
+				  <% end %>
+		      <% else %>
+                 &nbsp;
+			  <% end %>
+			  </td>
+			  <td width="6%" class="tabcolor" ><%= statement.amount %></td>
+			  <td width="7%" class="tabcolor" >
+			  <% if statement.user_tax_id != nil  %>
+              <%= statement.user_tax.name%>
+			  <% else %>
+			  &nbsp;
+			  <% end %>
+			  </td>
+			  <td width="11%"  rel="59" class="tabcolor"><%=@bank_statement.vendor_client%></td>
+              <td width="7%"  rel="59" class="tabcolor">
+			  <% if statement.category_id != nil %>
+			   <%=statement.category.name%>
+			  <% else %>
+                &nbsp;
+               <% end %>				
+			   </td>
               <td width="10%"  rel="59" class="tabcolor">Sub- Category1</td>
               <td width="8%"  rel="59" class="tabcolor">Client 1</td>
                        <td width="17%"  rel="59" class="tabcolor"><a href="#"><img src="images/upload.png" alt="" border="0" /></a></td>

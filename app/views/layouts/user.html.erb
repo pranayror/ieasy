@@ -12,6 +12,7 @@ $.noConflict();
 <!--[if IE]>
 <%= stylesheet_link_tag 'all-ie'%>
 <![endif]-->
+<%= apply_auto_branding(current_user) if !current_user.blank? %>
 </head>
 <body>
     <%= render :partial =>'layouts/header'%>
@@ -27,7 +28,7 @@ $.noConflict();
   </li>
  <li><%= link_to "Clients", clients_path, :onmouseover => "mopen('m2')", :onmouseout => "mclosetime()"%></li>
   <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Invoices</a>
-    <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    <div id="m3" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
       <ul>
         <li class="none"><a href="#">Invoice </a></li>
         <li><a href="#">Recurring</a> </li>
@@ -39,7 +40,7 @@ $.noConflict();
   </li>
   <!--<li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">Bank</a> -->
     <li><%= link_to "Bank",url_options={:controller=>"bank", :action=>"index"}, html_options={:onmouseover=>"mopen('m4')", :onmouseout=>"mclosetime()"} %>
-    <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+    <div id="m4" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
       <ul>
         <li class="none">
 		<!--<a href="#">Upload Bank Statement</a>-->

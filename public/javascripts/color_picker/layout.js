@@ -81,4 +81,21 @@
 	};
 	
 	EYE.register(initLayout, 'init');
+	
+	
 })(jQuery)
+
+
+function choose_color(area1,area2,area3)
+{
+	            jQuery('.colour_selector_box').css('backgroundColor', '#' + area1);
+			    jQuery('.area1_color').attr('value', '#'+area1);
+				jQuery('.preset_border').css('backgroundColor', '#' + area1);
+				jQuery('.colour_selector_box1').css('backgroundColor', '#' + area2);
+			    jQuery('.area2_color').attr('value', '#'+area2);
+				jQuery('.preset_nav').css('backgroundColor', '#' + area2);
+				jQuery('.preset_navbg').css('backgroundColor', '#' + area2);
+				jQuery('.colour_selector_box2').css('backgroundColor', '#' + area3);
+			    jQuery('.area3_color').attr('value', '#'+area3);
+				jQuery('.preset_nav1').css('backgroundColor', '#' + area3);
+}

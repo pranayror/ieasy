@@ -15,6 +15,7 @@ class ClientsController < ApplicationController
     def create
       #render :text => params.inspect and return
      @client = Client.new(params[:client])
+     @client.user_id = current_user.id
      @client.save ? (redirect_to :controller => "clients") : (render :action => :new)
    end
      

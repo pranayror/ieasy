@@ -9,7 +9,7 @@
       <% path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
 	  <% form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
 	  
-	  
+	
 	  
 	  <div class="setting">
         <div class="inter">
@@ -25,7 +25,7 @@
           <strong>
 We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will be resized to scale.
 </strong>
-          </div>
+          </div>  
           <div class="pic"><%= image_tag @user_setting.logo.url(:medium) if !@user_setting.logo_file_name.blank?%></div>
           </div>
           <div class="clear"></div>
@@ -90,7 +90,7 @@ We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will b
                  <div class="preset_nav" style="background:<%=area2_color%>">Area 2</div>
                  <div class="preset_nav1" style="background:<%=area3_color%>">Area 3</div>
                   <div class="clear"></div>
-                   <div class="preset_navbg" style="background:<%=area2_color%>">Area 3</div>
+                   <div class="preset_navbg" style="background:<%=area2_color%>">Area 2</div>
                  </div>
                  </div>
                  </div>
@@ -99,42 +99,56 @@ We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will b
            <div class="choosecolorpallate">
            <div class="choosecolor">Sample Colors</div>
            <div class="colorgallery">
+		    <a href="javascript://" onclick="choose_color('195a8c','dddddd','7295b2');" style="text-decoration:none;">
            <div class="choose1">
-           <div class="choosepreset_tabmain ">
-                 <div class="choosepreset_area1">Area 1</div>
-                 <div class="choosepreset_nav">Area 3</div>
-                 <div class="choosepreset_nav1">Area 3</div>
-                  <div class="clear"></div>
-                   <div class="choosepreset_navbg">Area 3</div>
-                </div>
+				   <div class="choosepreset_tabmain ">
+						<div class="choosepreset_area1">Area 1</div>
+						<div class="choosepreset_nav">Area 2</div>
+						<div class="choosepreset_nav1">Area 3</div>
+						<div class="clear"></div>
+						 <div class="choosepreset_navbg">Area 2</div>
+					</div>
            </div>
-            <div class="choose2">
+		   	</a>
+			
+			
+			<a href="javascript://" onclick="choose_color('327500','d8dc85','7ead1c');" style="text-decoration:none;">	
+            <div class="choose2"> 
             <div class="choosepreset_tabmain ">
                  <div class="choosepreset_area1">Area 1</div>
-                 <div class="choosepreset_nav4">Area 3</div>
+                 <div class="choosepreset_nav4">Area 2</div>
                  <div class="choosepreset_nav3">Area 3</div>
                   <div class="clear"></div>
-                   <div class="choosepreset_navbg1">Area 3</div>
+                   <div class="choosepreset_navbg1">Area 2</div>
                 </div>
             </div>
+			</a>
+			
+			<a href="javascript://" onclick="choose_color('ae4700','f3d5bf','df9059');" style="text-decoration:none;">
              <div class="choose3">
              <div class="choosepreset_tabmain ">
                  <div class="choosepreset_area1">Area 1</div>
-                 <div class="choosepreset_nav5">Area 3</div>
+                 <div class="choosepreset_nav5">Area 2</div>
                  <div class="choosepreset_nav6">Area 3</div>
                   <div class="clear"></div>
-                   <div class="choosepreset_navbg2">Area 3</div>
+                   <div class="choosepreset_navbg2">Area 2</div>
                 </div>
              </div>
+			 </a>
+			 
+			 <a href="javascript://" onclick="choose_color('783678','d1c1d1','a769a7');" style="text-decoration:none;">
               <div class="choose4">
             <div class="choosepreset_tabmain ">
                  <div class="choosepreset_area1">Area 1</div>
-                 <div class="choosepreset_nav7">Area 3</div>
+                 <div class="choosepreset_nav7">Area 2</div>
                  <div class="choosepreset_nav8">Area 3</div>
                   <div class="clear"></div>
-                   <div class="choosepreset_navbg3">Area 3</div>
+                   <div class="choosepreset_navbg3">Area 2</div>
                 </div>
               </div>
+			  </a>
+			  
+			  
            </div>
            </div>
              <div class="clear"></div>

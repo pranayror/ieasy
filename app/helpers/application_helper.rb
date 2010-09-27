@@ -18,4 +18,21 @@ def new_child_fields(form_builder, method, options = {})
     render(:partial => options[:partial], :locals => {options[:form_builder_local] => f}) 	
 	end
 end
+
+def apply_auto_branding(object)
+	
+	if !object.user_setting.blank?
+	 %Q{
+        <style type=\"text/css\">
+		.logo {background: url(../..#{object.user_setting.logo.url(:medium)}) no-repeat;}
+          .container {background: #{object.user_setting.area1_color}}
+	     #login_wrapper_main {background: #{object.user_setting.area2_color}}
+	     #sddm {background: #{object.user_setting.area2_color}}
+	     #sddm li a.active {background: #{object.user_setting.area2_color}}
+	     #sddm li a {background: #{object.user_setting.area3_color}}
+        </style>
+      }
+      end
+end
+
 end
