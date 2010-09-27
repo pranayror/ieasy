@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   before_filter :get_client,  :only =>[:edit, :update]
   
   def index
-  @clients = Client.all
+  @clients = current_user.clients
   end
   
   def new

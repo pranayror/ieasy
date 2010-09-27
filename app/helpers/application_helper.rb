@@ -20,16 +20,18 @@ def new_child_fields(form_builder, method, options = {})
 end
 
 def apply_auto_branding(object)
-	
+  
+	logo_image = !object.user_setting.logo_file_name.blank? ? object.user_setting.logo.url(:medium) : "/../images/logo.png"
+  
 	if !object.user_setting.blank?
 	 %Q{
         <style type=\"text/css\">
-		.logo {background: url(../..#{object.user_setting.logo.url(:medium)}) no-repeat;}
-          .container {background: #{object.user_setting.area1_color}}
-	     #login_wrapper_main {background: #{object.user_setting.area2_color}}
-	     #sddm {background: #{object.user_setting.area2_color}}
-	     #sddm li a.active {background: #{object.user_setting.area2_color}}
-	     #sddm li a {background: #{object.user_setting.area3_color}}
+		         .logo {background: url(../..#{logo_image}) no-repeat;}
+            .container {background: #{object.user_setting.area1_color}}
+            #login_wrapper_main {background: #{object.user_setting.area2_color}}
+            #sddm {background: #{object.user_setting.area2_color}}
+            #sddm li a.active {background: #{object.user_setting.area2_color}}
+            #sddm li a {background: #{object.user_setting.area3_color}}
         </style>
       }
       end
