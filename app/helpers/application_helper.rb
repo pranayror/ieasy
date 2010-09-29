@@ -21,7 +21,7 @@ end
 
 def apply_auto_branding(object)
   
-	logo_image = !object.user_setting.logo_file_name.blank? ? object.user_setting.logo.url(:medium) : "/../images/logo.png"
+	logo_image = (!object.user_setting.blank? && !object.user_setting.logo_file_name.blank?) ? object.user_setting.logo.url(:medium) : "/../images/logo.png"
   
 	if !object.user_setting.blank?
 	 %Q{

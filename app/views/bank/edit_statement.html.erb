@@ -1,5 +1,8 @@
 <%= javascript_include_tag :defaults %>
 <%= stylesheet_link_tag 'chain_selects' %>
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
 <h1>Allocate money</h1>
 <div class="clear"></div>
 <div class="bank">
@@ -25,7 +28,7 @@
    </p>
    <td width="8%"  class="tabcolor">
    <p>Tax:
-    <%= collection_select :bank, :user_tax, @taxes, :id, :name,{:include_blank => '-select Tax-' } %>
+    <%= collection_select :bank, :user_tax, @taxes,	 :id, :name,{:include_blank => '-select Tax-' } %>
    </p>
    </td>
    <td width="8%"  class="tabcolor">   
@@ -39,11 +42,14 @@
    </p>	-->
     select Category & subCategory
    <%= chain_select_ajax(:models => [:category, :sub_category]) %>
+    <%#= link_to "add category", :controller=>"category", :action=>"new" %>
+	<%#= link_to "add sub_category", :controller=>"sub_category", :action=>"new" %>
    </td> 
 <td width="8%"  class="tabcolor">   
-   <p>Client:
-    <%= collection_select :bank, :client, @clients, :id, :organisation,{:include_blank => false } %>
+   <p>Asign to Client:
+    <%= collection_select :bank, :client, @clients, :id, :organisation,{:include_blank => "-Select client-" } %>
    </p>	
+   
    </td>
    <td width="8%"  class="tabcolor">
    	  <%= submit_tag "submit" %>
