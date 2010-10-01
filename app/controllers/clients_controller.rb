@@ -1,10 +1,17 @@
 class ClientsController < ApplicationController
   layout 'user'
   before_filter :require_user
-  before_filter :get_client,  :only =>[:edit, :update]
+  before_filter :get_client,  :only =>[:edit, :update, :show]
   
   def index
+    @search = Client.search(params[:search])
+    if params[:search] && !params[:search].blank?
+     
+       @clients = @search.all
+       else
+      #~ render :text => @clients.inspect and return
   @clients = current_user.clients
+  end
   end
   
   def new

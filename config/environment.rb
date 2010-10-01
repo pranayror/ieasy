@@ -7,7 +7,7 @@ RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  #config.gem 'binarylogic-authlogic', :lib => 'authlogic', :source => 'http://gems.github.com'
+  config.gem 'binarylogic-authlogic', :lib => 'authlogic', :source => 'http://gems.github.com'
   config.gem 'mbleigh-subdomain-fu', :source => "http://gems.github.com", :lib => "subdomain-fu"
     config.gem 'map-fields', :version => '~> 1.0.0', :lib => 'map_fields'
   # Settings in config/environments/* take precedence over those specified here.

@@ -1,0 +1,110 @@
+ <div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="containernew ">  
+    <div class="clBoth"></div>
+    <div class="clearb"></div>    
+    <br>   
+<h2 class="button-panel-title"><span class="title"><%=@client.organisation%></span> </h2>
+<br/>
+<div class="span-26 append-1" style="line-height: 24px;">
+<div class="span-8 append-1 ta_right bold">
+Contact
+:
+</div>
+<div class="span-17">
+<%=@client.contact%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Email:
+</div>
+<div class="span-17">
+<%=mail_to @client.email%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Username:
+</div>
+<div class="span-17"><%=@client.user_name%></div>
+<div class="span-8 append-1 ta_right bold">
+Last Login:
+</div>
+<div class="span-17">
+--
+</div>
+<div class="span-8 append-1 ta_right bold">
+Invoices sent by:
+</div>
+<div class="span-17">
+Email
+</div>
+<div class="clearb"></div>
+<div class="rule_5 bg_grey90"></div>
+<div class="span-8 append-1 ta_right bold">
+Business:
+</div>
+<div class="span-17">
+<%=@client.business_phone%></div>
+<div class="span-8 append-1 ta_right bold">
+Mobile:
+</div>
+<div class="span-17">
+<%=@client.mobile%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Home:
+</div>
+<div class="span-17">
+<%=@client.home%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Fax:
+</div>
+<div class="span-17">
+<%=@client.fax%>
+</div>
+<div class="clearb"></div>
+<br/>
+
+<%@client.client_contacts.each_with_index do |client, i| %>
+
+<% next if i == 0%>
+<div class="span-8 append-1 ta_right bold">
+Name
+:
+</div>
+<div class="span-17">
+<%=client.first_name + " " + client.last_name%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Email:
+</div>
+<div class="span-17">
+<%=mail_to client.email%>
+</div>
+<div class="span-8 append-1 ta_right bold">
+Username:
+</div>
+<div class="span-17"><%=client.user_name%></div>
+
+<div class="clearb"></div>
+
+<br/>
+<%end%>
+<br/>
+<div class="prepend-9">
+<%= link_to "Add another contact", edit_client_path(@client.try(:id))%>
+
+</div>
+<div class="clearb"></div>
+</div> 
+<div class="span-11 sidebar">
+  <div style="padding: 20px 10px;">
+<h4 class="sidebar_header quicklinks">&nbsp;</h4>
+</div>
+</div>
+<div class="clearb"></div>
+</div>
+
+</div>
+    <div class="clear"></div>
+  </div>
+</div>
