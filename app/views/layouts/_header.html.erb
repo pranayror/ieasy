@@ -1,26 +1,26 @@
 
-<div id="header">
-  <div class="container container_pricing">
-    <div class="logoarea">
-      <div > <%= link_to '',root_path,:class=>"logo" %></div>
-      <div class="phone">
-	  
-	  <% if current_user.blank? %>
-	  <%= link_to 'Signup',signup_path,{:class=>'b'} %>
+
+<div class="top">
+ <div class="loginuser"></div>
+  <div class="logintopmenu">
+  <ul>
+   <% if current_user.blank? %>
+	<li>  <%= link_to 'Signup',signup_path,{:class=>'b'} %>
 	  |
-	  <%= link_to 'Login',find_domains_path,{:class=>'b'} %>
+	 <li> <%= link_to 'Login',find_domains_path,{:class=>'b'} %>
 	  | <a href="#" class="b">We're Hiring!</a>
 	  <% else %>
-	  <a href="#" class="b">My Account</a>
+	  <li><a href="#" class="b">My Account</a><li>
 	  |
-	  <%= link_to 'Settings',profile_users_path,{:class=>'b'} %>
+	<li>  <%= link_to 'Settings',profile_users_path,{:class=>'b'} %><li>
 	  |
-	  <%= link_to 'Logout',logout_path,{:class=>'b'}%>
+	  <li><%= link_to 'Logout',logout_path,{:class=>'b'}%><li>
 	  <% end %>
-	  </div>
-    </div>
+ 
+  </ul>
   </div>
-</div>
+  </div>
+
 
 <div class="clBoth"></div>
 <div class="clBoth"></div>

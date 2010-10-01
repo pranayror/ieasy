@@ -1,0 +1,68 @@
+<%= stylesheet_link_tag 'color_picker/colorpicker','color_picker/layout'%>
+<%= javascript_include_tag 'color_picker/colorpicker','color_picker/eye','color_picker/layout' %>
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="innercontainer">
+      <%= render :partial=>'settingsheader' %>
+      <div class="clear"></div>
+      
+      <%# path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
+	  <%# form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+	  
+	<div class="setting">
+        <div class="inter">
+          <h1> 
+Features & Permissions</h1>
+          <h2>Add or remove features, and limit what your staff and clients have access to.
+   </h2>
+          <div class="separator"></div>
+          <div class="clear"></div>
+          <div class="permissions">
+          <div class="permit">Administrator Permissions </div>
+          <div class="features">
+          <ul class="permissions">
+	<li class="enabled"><div><input type="checkbox" checked="" > <label for="admin_team">Wages</label></div></li>
+	<li class="enabled"><div><input type="checkbox" checked="" > <label for="admin_estimate">Reports</label></div></li>
+	<li ><div><input type="checkbox" checked="" > <label for="admin_timesheet">Time Tracking</label></div></li>
+	<li ><div><input type="checkbox"  checked="" i> <label for="admin_support">Support</label></div></li>
+	<li class="enabled"><div><input type="checkbox"  checked="" > <label for="admin_document">Documents</label></div></li>
+</ul>
+ 
+          </div>
+          </div>
+          
+          
+          <div class="permissions">
+          <div class="permit">Client Permissions  </div>
+          <div class="features">
+          <ul class="permissions">
+	<li ><div><input type="checkbox" checked="" > <label for="admin_timesheet">Support</label></div></li>
+	<li ><div><input type="checkbox"  checked="" i> <label for="admin_support">Document</label></div></li>
+	</ul>
+    
+    <div class="clear"></div>
+  <div class="specialper">
+   <div class="left"> <input name="" type="checkbox" value="" /></div>
+    <div class="right">Dispute Invoices</div>
+  </div>
+  <div class="clear"></div>
+  <strong>Clients are allowed to dispute invoices.</strong>
+  <div class="clear"></div>
+  <div class="specialper">
+   <div class="left"> <input name="" type="checkbox" value="" /></div>
+    <div class="right">Document Administration</div>
+  </div>
+  <div class="clear"></div>
+  <strong>Clients are permitted to create new folders.</strong>
+ 
+          </div>
+          </div>
+          <div class="clear"></div>
+          <div class="upgrade" style=" margin-left:390px; margin-top:20px;"><a href="#">Save</a></div>
+        </div>
+      </div>
+	  
+	  <%# end %>
+    </div>
+    <div class="clear"></div>
+  </div>

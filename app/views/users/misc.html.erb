@@ -1,0 +1,140 @@
+<%= stylesheet_link_tag 'color_picker/colorpicker','color_picker/layout'%>
+<%= javascript_include_tag 'color_picker/colorpicker','color_picker/eye','color_picker/layout' %>
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="innercontainer">
+      <%= render :partial=>'settingsheader' %>
+      <div class="clear"></div>
+      
+      <% path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
+	  <% form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+	  
+	<div class="setting">
+        <div class="inter">
+          <h1> Miscellaneous</h1>
+          <h2>Random tweaks, dials and knobs. </h2>
+          <div class="separator"></div>
+          <h4>General</h4>
+          <div class="clear"></div>
+          <div class="misc">
+            <div class="left">Lines Per Page</div>
+            <div class="right">
+              <div class="input1">
+               <%= f.text_field :lines_per_page %>
+              </div>
+              <div class="clear"></div>
+              <strong> Number of invoices, clients, etc. shown on "List of" pages. </strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left">Date Format</div>
+            <div class="right">
+            <% formates =[["mm/dd/yy"],["mm/dd/yyyy"],["dd/mm/yy"],["dd/mm/yyyy"],["yy-mm-dd"],["yyyy-mm-dd"]] %>
+            <%= f.select("date_format",formates, {:include_blank => true},:class=>'formSelectReq') %>
+ 
+             
+              <div class="clear"></div>
+              <strong> The date format used throughout your account. </strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left">Direct Links</div>
+            <div class="right">
+              <div class="span">
+              
+              <%=f.check_box(:direct_links,{},true, false) %>
+              </div>
+              <div class="label">Enabled (Strongly Recommended)</div>
+              <div class="clear"></div>
+              <strong>Allows your client to view invoices and estimates by <a href="#">clicking a link in their email.</a> </strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left">FreshBooks Branding</div>
+            <div class="right">
+              <div class="span">
+                 <%=f.check_box(:ieasy_branding,{},true, false) %>
+              </div>
+              <div class="label">Enabled </div>
+              <div class="clear"></div>
+              <strong> Show FreshBooks branding on invoices/estimates and <a href="#">earn referrals.</a> </strong> </div>
+          </div>
+          <div class="clear"></div>
+          <div class="separator"></div>
+          <h4> Invoice & Estimates </h4>
+          <div class="misc">
+            <div class="left">Text Below Your Logo</div>
+            <div class="right">
+              <div class="input2">
+               <%= f.text_field :logo_text %>
+              </div>
+              <div class="clear"></div>
+              <strong> This text appears below your logo on invoices and estimates. </strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left">Recurring Invoices</div>
+            <div class="right">
+              <div class="span">
+                <input type="checkbox" name="checkbox" id="checkbox"  border="none"/>
+              </div>
+              <div class="label">Send Automatically</div>
+              <div class="clear"></div>
+              <strong>Recurring invoices are sent immediately to your client when they get created. </strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left"></div>
+            <div class="right">
+              <div class="span">
+                <input type="checkbox" name="checkbox" id="checkbox"  border="none"/>
+              </div>
+              <div class="label">Apply Credit Automatically</div>
+              <div class="clear"></div>
+              <strong>Recurring invoices automatically apply client credit as payment.</strong> </div>
+          </div>
+          <div class="misc">
+            <div class="left">Default Column Headings</div>
+            <div class="right">
+            
+             <% column_headings =[["Items",1],["Time",2],["Both Items and Time",3]] %>
+             <%= f.select(:colum_headings,column_headings, {:include_blank => true},:id=>'lineType') %>
+              <div class="clear"></div>
+              <strong> This controls the default column headings that are displayed when editing an invoice, estimate, or recurring profile. </strong> </div>
+          </div>
+          
+          <div class="clear"></div>
+          <div class="separator"></div>
+          <h4> Welcome Messages </h4>
+          <div class="misc">
+            <div class="left">Client</div>
+            <div class="right">
+            client_welcome_message
+            <%= f.text_area(:client_welcome_message,:id=>"textarea") %>
+              <div class="clear"></div>
+              <strong> This text will appear on your client home page. <a href="#">Preview client home page</a></strong> </div>
+          </div>
+          
+          <div class="clear"></div>
+          <div class="separator"></div>
+          <h4> Documents </h4>
+          <div class="misc">
+            <div class="left">Default Client Access</div>
+            <div class="right">
+            <% client_access =[["None",1],["Read",2],["Read/write",3]] %>
+            <%= f.select(:client_document_access,client_access, {:include_blank => true},:id=>'newUser_docDefault') %>
+              
+              <div class="clear"></div>
+              <strong> You must manually give clients access to folders. </strong> </div>
+          </div>
+          
+          <div class="clear"></div>
+    
+        
+          
+          <div class="clear"></div>
+          <div style="margin-left:370px;">
+          <%= submit_tag 'Save' ,:class=>'upgrade' %></div>
+          <div class="saveupgrade" style=" margin-left:10px; margin-top:20px; "><a href="#">Restore Defaults</a></div>
+        </div>
+      </div>
+	  
+	  <% end %>
+    </div>
+    <div class="clear"></div>
+  </div>

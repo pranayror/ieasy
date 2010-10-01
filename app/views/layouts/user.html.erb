@@ -15,16 +15,17 @@ $.noConflict();
 <%= apply_auto_branding(current_user) if !current_user.blank? %>
 </head>
 <body>
-    <%= render :partial =>'layouts/header'%>
-	<div  id="wrapper">
-  <div  id="wrapper_main">
-
-    <div class="clear"></div>
-    <ul id="sddm">
+ <div id="myaccount">
+ <div id="myaccount_inner">
+ <div class="header">
+ 
+  <%= render :partial =>'layouts/header'%>
+      <div class="clear"></div>
+      <ul id="sddm">
 	
   <li>
-  <a href="#" onmouseover="mopen('m1')" onmouseout="mclosetime()" class="active">Home</a>
-  <!--<%= link_to "Home",url_options={:controller=>"users", :action=>"index"}, html_options={:onmouseover=>"mopen('m1')", :onmouseout=>"mclosetime()"} %>-->
+
+  <%= link_to "Home",'/users/index', {:onmouseover=>"mopen('m1')", :onmouseout=>"mclosetime()",:class=>"active"} %>
   </li>
  <li><%= link_to "Clients", clients_path, :onmouseover => "mopen('m2')", :onmouseout => "mclosetime()"%></li>
   <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Invoices</a>
@@ -74,30 +75,12 @@ $.noConflict();
   
   </li>
 </ul>
-
-    <!--<div class="menu">
-      <ul>
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Clients</a></li>
-        <li><a href="#">Invoices</a></li>
-        <li><a href="#">Bank</a></li>
-        <li><a href="#">Credit Cards</a></li>
-        <li><a href="#">Cash Expenses</a></li>
-        <li><a href="#">Wages</a></li>
-        <li><a href="#">Documents</a></li>
-        <li><a href="#">Reports</a></li>
-      </ul>
-    </div>-->
-  <!--  <div class="clear"></div>
-    <div class="black"></div>-->
-	<div class="clear"></div>
-    <div class="container">
-     <%= yield %>
-        <div class="clear"></div>
     </div>
     <div class="clear"></div>
-  </div>
-</div>
+    
+ </div>
+ </div>
 
+<%= yield %>
 </body>
 </html>

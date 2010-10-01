@@ -68,9 +68,7 @@ img {
 .container {
 	width:1000px;
 	float:left;
-	
 	font-family:Verdana, Arial, Helvetica, sans-serif;
-	background-color:#195a8c;
 }
 
 .container h1 {
@@ -364,18 +362,20 @@ img {
 #myaccount .header {
 	width:1000px;
 	float: left;
-	height:255px;
+	height:200px;
 }
 #myaccount .header .top {
 	width:1000px;
 	float: left;
 	margin-top:3px;
-	height:183px;
+	height:125px;
 }
 .loginuser {
-	width:150px;
-	height:181px;
+	height:100px;
+   width:230px;
 	float:left;
+	margin:10px;
+	background:url(/../images/logo.png) no-repeat;
 }
 .logintopmenu {
 	width:245px;
@@ -459,7 +459,6 @@ img {
 	width:1000px;
 	margin:0 auto;
 	padding:0;
-	background-color:#dddddd;
 }
 #login_wrapper .container {
 	width:1000px;
@@ -529,7 +528,7 @@ img {
 .innercontainer {
 	width:1000px;
 	float:left;
-	
+	margin-top:15px;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 }
 /*------Billing info css-------*/
@@ -1690,8 +1689,8 @@ ul.permissions li.enabled div {
 	z-index: 30;
 	position:relative;
 	width:1000px;
-	/*background:url(../images/bg.png) repeat-x bottom left;*/
-	background-color:#dddddd;
+	/*background:url(../images/bg.png) repeat-x bottom left;
+	background-color:#dddddd;*/
 	float:left;
 }
 #sddm ul {
@@ -1719,7 +1718,7 @@ text-align:center;
 text-decoration:none;
 }
 #sddm li a:hover {
-	background: #000000
+	background: #000000;
 }
 #sddm li a.active {
 	background: #dddddd
