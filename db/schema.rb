@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100917035938) do
+ActiveRecord::Schema.define(:version => 20100926052418) do
+
+  create_table "amount_allocations", :force => true do |t|
+    t.float    "amount"
+    t.integer  "bank_id"
+    t.integer  "category_id"
+    t.integer  "sub_category_id"
+    t.integer  "tax_id"
+    t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "banks", :force => true do |t|
     t.integer  "user_id"
@@ -22,8 +33,53 @@ ActiveRecord::Schema.define(:version => 20100917035938) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "client_contacts", :force => true do |t|
+    t.integer  "client_id"
+    t.string   "email",           :limit => 100
+    t.string   "home_phone"
+    t.string   "mobile"
+    t.string   "first_name",      :limit => 40
+    t.string   "last_name",       :limit => 40
+    t.string   "user_name",       :limit => 40
+    t.string   "password",        :limit => 40
+    t.boolean  "send_login_info"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", :force => true do |t|
+    t.string   "organisation"
+    t.boolean  "send_invoices"
+    t.string   "business_phone"
+    t.string   "fax"
+    t.string   "country"
+    t.string   "address_street1"
+    t.string   "address_street2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.string   "secondary_country"
+    t.string   "sec_address_street1"
+    t.string   "sec_address_street2"
+    t.string   "sec_city"
+    t.string   "sec_state"
+    t.string   "sec_zip_code"
+    t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :default => "", :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -32,34 +88,72 @@ ActiveRecord::Schema.define(:version => 20100917035938) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
+  create_table "sub_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id"
-    t.string   "company_name"
     t.integer  "profession_id"
+    t.string   "country"
     t.string   "address"
     t.string   "address1"
     t.string   "city"
     t.string   "province_state"
     t.string   "zip_code"
-    t.string   "email"
     t.string   "business_phone"
     t.string   "mobile"
+    t.string   "fax"
     t.string   "time_zone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_settings", :force => true do |t|
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "invoice_logo_file_name"
+    t.string   "invoice_logo_content_type"
+    t.integer  "invoice_logo_file_size"
+    t.datetime "invoice_logo_updated_at"
+    t.string   "quality_logo_file_name"
+    t.string   "quality_logo_content_type"
+    t.integer  "quality_logo_file_size"
+    t.datetime "quality_logo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id",                   :null => false
+    t.string   "area1_color",               :null => false
+    t.string   "area2_color",               :null => false
+    t.string   "area3_color",               :null => false
+  end
+
+  create_table "user_taxes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.float    "percent"
+    t.string   "government_tax_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
     t.integer  "package_id",                                           :null => false
-    t.string   "company_name",        :limit => 100, :default => "",   :null => false
-    t.string   "package_email",       :limit => 100, :default => "",   :null => false
-    t.string   "login",               :limit => 10,  :default => "",   :null => false
-    t.string   "login_page_url",                     :default => "",   :null => false
-    t.string   "crypted_password",                   :default => "",   :null => false
-    t.string   "password_salt",                      :default => "",   :null => false
-    t.string   "persistence_token",                  :default => "",   :null => false
-    t.string   "single_access_token",                :default => "",   :null => false
-    t.string   "perishable_token",                   :default => "",   :null => false
+    t.string   "company_name",        :limit => 100,                   :null => false
+    t.string   "package_email",       :limit => 100,                   :null => false
+    t.string   "login",               :limit => 10,                    :null => false
+    t.string   "login_page_url",                                       :null => false
+    t.string   "crypted_password",                                     :null => false
+    t.string   "password_salt",                                        :null => false
+    t.string   "persistence_token",                                    :null => false
+    t.string   "single_access_token",                                  :null => false
+    t.string   "perishable_token",                                     :null => false
     t.boolean  "is_active",                          :default => true
     t.integer  "login_count",                        :default => 0,    :null => false
     t.integer  "failed_login_count",                 :default => 0,    :null => false
