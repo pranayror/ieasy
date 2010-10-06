@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.xml
+  layout 'user'
   def index
     @categories = Category.all
 

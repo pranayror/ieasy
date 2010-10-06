@@ -1,6 +1,7 @@
 class SubCategoriesController < ApplicationController
   # GET /sub_categories
   # GET /sub_categories.xml
+  layout 'user'
   def index
     @sub_categories = SubCategory.all
 
@@ -25,7 +26,7 @@ class SubCategoriesController < ApplicationController
   # GET /sub_categories/new.xml
   def new
     @sub_category = SubCategory.new
-
+    @categories = Category.find(:all,:conditions=>["user_id = ?",current_user.id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @sub_category }
@@ -35,6 +36,7 @@ class SubCategoriesController < ApplicationController
   # GET /sub_categories/1/edit
   def edit
     @sub_category = SubCategory.find(params[:id])
+    @categories = Category.find(:all,:conditions=>["user_id = ?",current_user.id])
   end
 
   # POST /sub_categories

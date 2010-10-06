@@ -7,10 +7,10 @@ class ClientsController < ApplicationController
     @search = Client.search(params[:search])
     if params[:search] && !params[:search].blank?
      
-       @clients = @search.all
+       @clients = @search.all(:conditions=>["deleted LIKE ?",0])
        else
       #~ render :text => @clients.inspect and return
-  @clients = current_user.clients
+  @clients = current_user.clients.find(:all,:conditions=>["deleted LIKE ?",0])
   end
   end
   
@@ -28,8 +28,18 @@ class ClientsController < ApplicationController
      
    def update
      @client.update_attributes(params[:client]) ? (redirect_to :controller => "clients") : (render :action => :edit, :id => params[:id])
-     
    end
+   
+   def update_status
+       if !params[:selected_client].blank?
+         for selectedclient in params[:selected_client]
+            client = Client.find(:first,:conditions=>["id LIKE ?",selectedclient])
+            client.update_attributes(params[:status].to_sym => 1)
+         end
+       end
+    redirect_to '/clients'
+   end
+   
    
    private
    def get_client

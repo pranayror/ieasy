@@ -7,8 +7,11 @@
 <meta name="title" content="FreshBooks - Online Invoicing Software - Pricing and Packages">
 <meta name="description" content="Are you a small business or freelancer looking for an easier way to invoice? FreshBooks has the answer. Choose the package that best meets your needs.">
 
-
+<% if current_user.blank? %>
+<%= stylesheet_link_tag 'style','styles','live_validation','niftyCorners','logininfo'%>
+<% else %>
 <%= stylesheet_link_tag 'style','live_validation','niftyCorners','logininfo'%>
+<% end %>
 <%= javascript_include_tag 'jquery-1.4.2.min' %>
 <%= javascript_include_tag "livevalidation_standalone" %>
 <%= javascript_include_tag 'niftycube','defaults' %>

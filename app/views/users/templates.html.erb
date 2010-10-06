@@ -1,0 +1,46 @@
+
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="innercontainer">
+      <%= render :partial=>'settingsheader' %>
+      <div class="clear"></div>
+      
+     
+	  
+	<div class="setting">
+        <div class="inter">
+          <h1> 
+Invoice & Estimate Template</h1>
+          <h2>Select a template and customize what appears on it.   </h2>
+          <div class="separator"></div>
+          <div class="clear"></div>
+          <div class="template">
+          
+          <div class="temp"><a href="#"><img src="/images/temp1.jpg" alt="" /></a></div>
+          <div class="temp"><a href="#"><img src="/images/temp2.jpg" alt="" /></a></div>
+          </div>
+          
+              <div class="clear"></div>
+          <div class="template">
+          <div class="choose">Choose Your Template</div>
+          <div class="nametemp">
+          <select name="new_invoice_template" id="new_invoice_template">
+				<option value="1">Clean Template</option>
+				<option selected="" value="0">Classic Template</option>
+			</select>
+            
+            <strong>Changes to your invoice template do not affect existing invoices.</strong>
+          </div>
+         
+          </div>
+          
+          
+          <div class="clear"></div>
+          <div class="upgrade" style=" margin-left:330px; margin-top:20px;"><a href="#">Save</a></div>
+        </div>
+      </div>
+	  
+	 
+    </div>
+    <div class="clear"></div>
+  </div>

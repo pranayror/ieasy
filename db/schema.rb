@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100926052418) do
+ActiveRecord::Schema.define(:version => 20101002061807) do
 
   create_table "amount_allocations", :force => true do |t|
     t.float    "amount"
     t.integer  "bank_id"
     t.integer  "category_id"
     t.integer  "sub_category_id"
-    t.integer  "tax_id"
+    t.integer  "user_tax_id"
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
     t.float    "debit"
     t.text     "description"
     t.text     "vendor_client"
+    t.float    "unallocated_mny"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,13 +74,16 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
     t.string   "sec_state"
     t.string   "sec_zip_code"
     t.string   "notes"
+    t.boolean  "archive",             :default => false
+    t.boolean  "deleted",             :default => false
+    t.datetime "login_time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,6 +96,20 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
     t.string   "name"
     t.string   "description"
     t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_permissions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "clients",       :limit => 1, :default => 1
+    t.integer  "invocies",      :limit => 1, :default => 1
+    t.integer  "bank",          :limit => 1, :default => 1
+    t.integer  "credit_card",   :limit => 1, :default => 1
+    t.integer  "cash_expenses", :limit => 1, :default => 1
+    t.integer  "wages",         :limit => 1, :default => 1
+    t.integer  "documents",     :limit => 1, :default => 1
+    t.integer  "reports",       :limit => 1, :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,6 +132,10 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
   end
 
   create_table "user_settings", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "area1_color"
+    t.string   "area2_color"
+    t.string   "area3_color"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -126,12 +148,16 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
     t.string   "quality_logo_content_type"
     t.integer  "quality_logo_file_size"
     t.datetime "quality_logo_updated_at"
+    t.integer  "lines_per_page"
+    t.string   "date_format"
+    t.integer  "direct_links",              :limit => 1, :default => 0
+    t.integer  "ieasy_branding",            :limit => 1, :default => 0
+    t.string   "logo_text"
+    t.integer  "colum_headings"
+    t.text     "client_welcome_message"
+    t.integer  "client_document_access"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                   :null => false
-    t.string   "area1_color",               :null => false
-    t.string   "area2_color",               :null => false
-    t.string   "area3_color",               :null => false
   end
 
   create_table "user_taxes", :force => true do |t|
@@ -145,15 +171,15 @@ ActiveRecord::Schema.define(:version => 20100926052418) do
 
   create_table "users", :force => true do |t|
     t.integer  "package_id",                                           :null => false
-    t.string   "company_name",        :limit => 100,                   :null => false
-    t.string   "package_email",       :limit => 100,                   :null => false
-    t.string   "login",               :limit => 10,                    :null => false
-    t.string   "login_page_url",                                       :null => false
-    t.string   "crypted_password",                                     :null => false
-    t.string   "password_salt",                                        :null => false
-    t.string   "persistence_token",                                    :null => false
-    t.string   "single_access_token",                                  :null => false
-    t.string   "perishable_token",                                     :null => false
+    t.string   "company_name",        :limit => 100, :default => "",   :null => false
+    t.string   "package_email",       :limit => 100, :default => "",   :null => false
+    t.string   "login",               :limit => 10,  :default => "",   :null => false
+    t.string   "login_page_url",                     :default => "",   :null => false
+    t.string   "crypted_password",                   :default => "",   :null => false
+    t.string   "password_salt",                      :default => "",   :null => false
+    t.string   "persistence_token",                  :default => "",   :null => false
+    t.string   "single_access_token",                :default => "",   :null => false
+    t.string   "perishable_token",                   :default => "",   :null => false
     t.boolean  "is_active",                          :default => true
     t.integer  "login_count",                        :default => 0,    :null => false
     t.integer  "failed_login_count",                 :default => 0,    :null => false

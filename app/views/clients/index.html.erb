@@ -1,3 +1,8 @@
+
+
+
+
+
 <div  id="login_wrapper">
   <div  id="login_wrapper_main">
     <div class="container">
@@ -11,16 +16,21 @@
     <div class="iconmenu">
 <ul>
 
-<li><span> <img src="images/icon1.png" alt="" /> </span><a href="#">Archive</a></span></li>
-<li><span> <img src="images/icon2.png" alt="" /> </span><a href="#">Delete </a></span></li>
+<li><span> <img src="images/icon1.png" alt="" /> </span><a href="javascript://" class="archive_clients">Archive</a></span></li>
+<li><span> <img src="images/icon2.png" alt="" /> </span><a href="javascript://" class="delete_clients">Delete</a></li>
 <li><span> <img src="images/icon3.png" alt="" /> </span><a href="#">Email</a></span></li>
 <li><span> <img src="images/icon4.png" alt="" /> </span><a href="#">Invoice</a></span></li>
 </ul>
 </div>
     
-     <div class="search">  <input name="" type="text" /> <label><a href="#"><img src="images/search.jpg" alt="" /></a></label>
-     </div>
+     <div class="clientsearch">
+       <label></label>
+       <img src="/images/search_button.png" alt="" width="20" height="18" class="search"/> <span><a href="javascript://" class="search">Search</a></span></div>
+       </div>
+     
     </div>
+    
+    <div class="search_block" style="display:none;">
     <%form_for @search, :url => {:controller => "clients", :action => :index} do |f|%>
    &nbsp;
     <table width="50%" border="0" align="center" cellpadding="0" cellspacing="0" class="clientsearchinput">
@@ -29,7 +39,7 @@
       <tr>
         <td align="right" valign="middle">Organisation:</td>
         <td align="left" valign="top"><label>
-          <%= f.text_field :organisation_like%>
+         <%= f.text_field :organisation_like, :id=>"textfield5",:size=>20 %>
         </label></td>
       </tr>
       <tr>
@@ -37,23 +47,21 @@
         </tr>
       <tr>
         <td align="right" valign="middle">First Name:</td>
-        <td align="left" valign="top">
-        <%#= f.text_field :first_name_like%>
-        </td>
+        <td align="left" valign="top"><input type="text" name="textfield2" id="textfield2" /></td>
       </tr>
        <tr>
         <td height="5" colspan="2" align="left" valign="middle"></td>
         </tr>
       <tr>
         <td align="right" valign="middle">Last Name:</td>
-        <td align="left" valign="top"></td>
+        <td align="left" valign="top"><input type="text" name="textfield3" id="textfield3" /></td>
       </tr>
        <tr>
         <td height="5" colspan="2" align="left" valign="middle"></td>
         </tr>
       <tr>
         <td align="right" valign="middle">Address:</td>
-        <td align="left" valign="top"></td>
+        <td align="left" valign="top"><input type="text" name="textfield4" id="textfield4" /></td>
       </tr>
     </table></td>
     <td width="10%" align="center" valign="top">&nbsp;</td>
@@ -61,7 +69,7 @@
       <tr>
         <td align="right" valign="middle">Email :</td>
         <td align="left" valign="top"><label>
-          
+          <input type="text" name="textfield" id="textfield" />
         </label></td>
       </tr>
        <tr>
@@ -69,16 +77,14 @@
         </tr>
       <tr>
         <td align="right" valign="middle">Phone :</td>
-        <td align="left" valign="top"></td>
+        <td align="left" valign="top"><input type="text" name="textfield2" id="textfield2" /></td>
       </tr>
        <tr>
         <td height="5" colspan="2" align="left" valign="middle"></td>
         </tr>
       <tr>
         <td align="right" valign="middle">Note:</td>
-        <td align="left" valign="top">
-        <%= f.text_field :notes_like%>
-        </td>
+        <td align="left" valign="top"> <%= f.text_field :notes_like,:id=>"textfield3",:size=>20%></td>
       </tr>
     </table></td>
   </tr>
@@ -86,19 +92,19 @@
     <td colspan="3" align="center" valign="top">&nbsp;</td>
     </tr>
   <tr>
-    <td colspan="3" align="center" valign="middle">
-    <%=image_submit_tag "/images/search.PNG"%>
-   <a href="#"><img src="/images/reset.png" alt="" width="150" height="37" border="0" /></a></td>
+    <td colspan="3" align="center" valign="middle"><a href="#"><img src="images/search.PNG" alt="" width="150" height="37" border="0" /></a><a href="#"><img src="images/reset.png" alt="" width="150" height="37" border="0" /></a></td>
   </tr>
 </table>
 <%end%>
+</div>
+
       <div class="clear"></div>
     <div class="bank">
     <table class="clienttab" cellpadding="0" cellspacing="0" width="100%">
 	<tbody>
 	<thead>
 	<tr>
-		<td width="5%" align="center" valign="middle"><img src="images/clienttab.jpg" alt="" /></td>
+		<td width="5%" align="center" valign="middle"><input type="checkbox" class="client_all_check"/></td>
 			  <td width="20%" align="left" valign="middle"  > Oraganisation</td>
 			  <td width="20%"  ><p>Contact </p></td>
 			  <td width="12%" >Last Login</td>			  
@@ -107,9 +113,10 @@
                 <td width="8%" align="left" ></td>
 			  </tr>      
         </thead>   
+ <% form_for :clients ,:url=>{:controller=>'clients',:action=>'update_status'}, :html=>{:id=>'client_status_form'} do %>       
 <%@clients.each do |client|%>
   <tr>
-		<td width="5%" align="center" valign="middle"><input type="checkbox" /></td>
+		<td width="5%" align="center" valign="middle"><%= check_box_tag 'selected_client[]',client.id,false,:class=>'selected_clients' %></td>
 			  <td width="20%" align="left" valign="middle" ><%= link_to client.try(:organisation), client_path(client.try(:id))%></td>
 			  <td width="20%"> <%=client.contact%></td>
 			  <td width="12%" > --</td>			  
@@ -118,7 +125,8 @@
                 <td width="8%" ><%= link_to "edit", edit_client_path(client.try(:id))%></td>
 			  </tr> 
 <%end%>	
-	   
+<%= hidden_field_tag :status,'',:value=>'',:class=>'status_value' %>
+<%end%>	   
 	  
 	  <tr style="display: block;" id="subscribe">
 	  <td colspan="6" style="border-bottom: 0pt none; padding: 0pt;">			

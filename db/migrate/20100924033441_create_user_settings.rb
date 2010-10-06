@@ -17,6 +17,14 @@ class CreateUserSettings < ActiveRecord::Migration
       t.string :quality_logo_content_type
       t.integer :quality_logo_file_size
       t.datetime :quality_logo_updated_at
+      t.integer :lines_per_page
+      t.string :date_format
+      t.boolean :direct_links, :limit=>2, :default=>0
+      t.boolean :ieasy_branding, :limit=>2, :default=>0
+      t.string :logo_text
+      t.integer :colum_headings
+      t.text :client_welcome_message
+      t.integer :client_document_access
       t.timestamps
     end
   end

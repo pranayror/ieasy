@@ -1,3 +1,4 @@
+<div class="container">
 <% if !@bank_statements.blank? %>
 <h1>List of Bank Statements </h1>
         <div class="clear"></div>
@@ -11,6 +12,7 @@
 			  <!-- <td width="9%" class="titletab"> Amount Allocated</td>
 			  <td width="7%" class="titletab" >Tax</td> -->
 			  <td width="12%"  rel="59" class="titletab">Vendor/Client</td>
+			  <td width="12%"  rel="59" class="titletab">Action</td>
               <!--<td width="10%"  rel="59" class="titletab">Category</td>
               <td width="11%"  rel="59" class="titletab">Sub-category</td>
 			  <td width="10%"  rel="59" class="titletab">Assign to</td>
@@ -42,6 +44,9 @@
 		<% else %>
 		<td width="12%"  rel="59" class="tabcolor">--</td>
 		<% end %>
+		<td width="12%"  rel="59" class="tabcolor">
+		<%= link_to "View", :action=>"show", :id=>statement.id %>
+		</td>
         <!-- <td width="10%"  rel="59" class="tabcolor">-- </td>
         <td width="11%"  rel="59" class="tabcolor">--</td>
 		<td width="10%"  rel="59" class="tabcolor">--</td>
@@ -54,8 +59,10 @@
 			
 	  </td></tr>
 	</tbody></table>
+	 <div align="center"><%= will_paginate @bank_statements %></div>
     </div>
 <% else %>
 <h1>sorry no Bank Statements found</h1>
         <div class="clear"></div>
 <% end %>	
+</div>

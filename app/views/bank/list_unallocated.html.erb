@@ -1,3 +1,4 @@
+<div class="container" >
 <% if !@bank_statements.blank? %>
 <h1>List of Unallocated Bank Statements </h1>
         <div class="clear"></div>
@@ -20,16 +21,13 @@
 	  <% for statement in @bank_statements %>
 	   <tr>
 		<td width="15%"  class="tabcolor"><%= statement.transaction_date%></td>
-		<% if !statement.description.nil? %>
-	    <td width="25%"  rel="58" class="tabcolor"><%= statement.description%></td>
-		<% else %>
-		<td width="20%"  rel="58" class="tabcolor">--</td>
-		<% end %>
-		<td width="15%" class="tabcolor"><%= (statement.debit != nil)? number_to_currency(statement.debit.to_f):"--" %></td>
-		<td width="15%" class="tabcolor"><%= (statement.credit != nil)? number_to_currency(statement.credit.to_f):"--" %></td>
+		<td width="25%"  rel="58" class="tabcolor"><%= (statement.description.nil?)? (statement.description):"--"%></td>
+		<td width="10%" class="tabcolor"><%= (statement.debit != nil)? number_to_currency(statement.debit.to_f):"--" %></td>
+		<td width="10%" class="tabcolor"><%= (statement.credit != nil)? number_to_currency(statement.credit.to_f):"--" %></td>
 		<!-- <td width="9%" class="tabcolor" >--</td>
 		<td width="7%" class="tabcolor" >--</td> -->
-		<td width="12%"  rel="59" class="tabcolor"><%= link_to "Allocate", :action=>"edit_statement", :id=>statement.id %></td>
+		<td width="25%"  rel="59" class="tabcolor"><%= link_to "Allocate", :action=>"edit_statement", :id=>statement.id %>
+		or<%= link_to "View", :action=>"show", :id=>statement.id %></td>
 		<!-- <td width="10%"  rel="59" class="tabcolor">-- </td>
         <td width="11%"  rel="59" class="tabcolor">--</td>
 		<td width="10%"  rel="59" class="tabcolor">--</td>
@@ -42,8 +40,10 @@
 			
 	  </td></tr>
 	</tbody></table>
+	 <div align="center"><%= will_paginate @bank_statements %></div>
     </div>
 <% else %>
 <h1>sorry no Bank Statements found</h1>
         <div class="clear"></div>
 <% end %>	
+</div>

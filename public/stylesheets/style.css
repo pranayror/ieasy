@@ -72,9 +72,11 @@ img {
 }
 
 .container h1 {
+    background:#D1E2FF none repeat scroll 0 0;
+	border-bottom:1px solid #000000; 
 	font-weight:normal;
 	font-size:24px;
-	width:944px;
+	width:990px;
 	float:left;
 	height:50px;
 	padding-top:15px;
@@ -110,20 +112,8 @@ img {
 	color:#303030;
 	padding-left:10px;
 }
-.container .clients .search {
-	float:right;
-	width:250px;
-	font-size:12px;
-}
-.container .clients .search input {
-	float:left;
-	margin-top:2px;
-	border:1px solid #616161;
-}
-.container .clients .search label {
-	float:left;
-	margin-left:5px;
-}
+
+
 .none {
 	background:none;
 	margin-right:5px;
@@ -273,7 +263,6 @@ img {
 	float:left;
 	width:1000px;
 	margin-top:15px;
-	color:#fff;
 	padding:0;
 }
 .titletab {
@@ -1406,7 +1395,6 @@ text-decoration:underline;}
 
 .permissions {
 	float:left;
-	width:800px;
 	margin-top:14px;
 	padding:0;
 }
@@ -1443,7 +1431,7 @@ text-decoration:underline;}
 	padding-top:2px;
 }
 .permissions .features {
-	width:580px;
+	width:675px;
 	float:left;
 	margin-left:15px;
 }
@@ -1770,3 +1758,24 @@ text-decoration:none;
 
 .phone a{color:#fff;text-decoration:none;font-weight:bold;}
 .phone a:hover{}
+
+/*--------------client search----------------*/
+.clientsearch {
+	float:right;
+	width:85px;
+	font-size:12px;
+	padding-top:10px;
+	 color:#000; 
+}
+.clientsearch a{ color:#000; font-weight:bold; text-decoration:underline; font-size:13px;}
+.clientsearch a:hover{ text-decoration:none;}
+.clientsearch img{ float:left;}
+.clientsearch  span{ float:left; margin-left:5px;}
+.clientsearchinput{color:#000;font-weight:bold; margin-top:20px;}
+.clientsearchemail{color:#000;font-weight:normal; margin-top:20px;}
+.clientsearchemail input{ margin-left:5px;}
+.clientsearchemail textarea{ margin-left:5px;}
+
+.clientsearchemail a{ color:#014a96; font-weight:bold; text-decoration:underline; font-size:13px;}
+.clientsearchemail a:hover{ text-decoration:none;}
+

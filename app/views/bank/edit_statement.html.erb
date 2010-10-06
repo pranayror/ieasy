@@ -3,6 +3,7 @@
 <% if flash[:notice] %>
 <%= flash[:notice] %>
 <% end %>
+<div class="container">
 <h1>Allocate money</h1>
 <div class="clear"></div>
 <div class="bank">
@@ -28,7 +29,7 @@
    </p>
    <td width="8%"  class="tabcolor">
    <p>Tax:
-    <%= collection_select :bank, :user_tax, @taxes,	 :id, :name,{:include_blank => '-select Tax-' } %>
+    <%= collection_select :bank, :user_tax, @taxes, :id, :name,{:include_blank => '-select Tax-' } %>
    </p>
    </td>
    <td width="8%"  class="tabcolor">   
@@ -40,17 +41,19 @@
    <p>SubCategory:
   <%= collection_select :bank, :sub_category, @sub_categories, :id, :name,{:include_blank => false } %>
    </p>	-->
-    select Category & subCategory
+    Select Category & SubCategory
    <%= chain_select_ajax(:models => [:category, :sub_category]) %>
-    <%#= link_to "add category", :controller=>"category", :action=>"new" %>
-	<%#= link_to "add sub_category", :controller=>"sub_category", :action=>"new" %>
+    <%#= link_to "New Category", new_category_path %>
+	<%#= link_to "New Subcategory", new_sub_category_path %>
    </td> 
 <td width="8%"  class="tabcolor">   
-   <p>Asign to Client:
+   <p>Assign to Client:
     <%= collection_select :bank, :client, @clients, :id, :organisation,{:include_blank => "-Select client-" } %>
    </p>	
-   
    </td>
+   <!--<td>
+    <%= file_field_tag :doc %>
+   </td>-->
    <td width="8%"  class="tabcolor">
    	  <%= submit_tag "submit" %>
    </td>

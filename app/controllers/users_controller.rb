@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save!
       current_user_session.destroy
-      UserProfile.create(:user_id=>@user.id)
       flash[:notice] = "Account registered!"
       redirect_to find_domains_path
     else
@@ -71,23 +70,30 @@ class UsersController < ApplicationController
   end
   
   def color_logo
-      @user_setting= current_user.user_setting.blank? ? UserSetting.new(params[:user_setting]) : current_user.user_setting
+      @user_setting=  current_user.user_setting
   end
   
   def misc
-      @user_setting= current_user.user_setting.blank? ? UserSetting.new(params[:user_setting]) : current_user.user_setting
+      @user_setting=  current_user.user_setting
   end
     
   def permissions
-      #~ @user_setting= current_user.user_setting.blank? ? UserSetting.new(params[:user_setting]) : current_user.user_setting
+      @user_premission= current_user.user_permission
+          if request.post?
+              @user_premission.update_attributes(params[:user_permission])
+          end
   end
   
-  def save_settings
-      user_setting = UserSetting.new(params[:user_setting])
-      user_setting.user_id=current_user.id
-      user_setting.save
-      redirect_to :back
+  
+  def templates
   end
+  
+  #~ def save_settings
+      #~ user_setting = UserSetting.new(params[:user_setting])
+      #~ user_setting.user_id=current_user.id
+      #~ user_setting.save
+      #~ redirect_to :back
+  #~ end
   
     def update_settings
       user_setting=current_user.user_setting
@@ -95,4 +101,10 @@ class UsersController < ApplicationController
       redirect_to :back
     end
     
+   def restore_color_settings
+      user_setting=current_user.user_setting
+      user_setting.update_attributes(:logo => nil,:invoice_logo => nil,:quality_logo => nil,:area1_color => nil, :area2_color => nil,:area3_color => nil)
+      redirect_to color_logo_users_path
+   end
+   
 end

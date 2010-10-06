@@ -3,7 +3,7 @@
 
 <title>IEasy Project</title>
 
-<%= stylesheet_link_tag 'style', 'pricing-old', 'infotab', 'new'%>
+<%= stylesheet_link_tag 'style', 'pricing-old', 'infotab','new'%>
 <%= javascript_include_tag 'jquery-1.4.2.min' %>
 <script type="text/javascript">
 $.noConflict();
@@ -23,12 +23,15 @@ $.noConflict();
       <div class="clear"></div>
       <ul id="sddm">
 	
-  <li>
-
-  <%= link_to "Home",'/users/index', {:onmouseover=>"mopen('m1')", :onmouseout=>"mclosetime()",:class=>"active"} %>
-  </li>
- <li><%= link_to "Clients", clients_path, :onmouseover => "mopen('m2')", :onmouseout => "mclosetime()"%></li>
-  <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Invoices</a>
+    <% client_link = "active" if params[:controller] == "clients" %>
+    <% bank_link = "active" if params[:controller] == "bank" %>
+    <% home_link = "active" if client_link.blank? &&  bank_link.blank? %>
+  <li><%= link_to "Home",'/users/index', {:onmouseover=>"mopen('m1')", :onmouseout=>"mclosetime()",:class=>home_link} %></li>
+  <% if current_user.user_permission.clients ==1 %>
+  <li><%= link_to "Clients", clients_path, :onmouseover => "mopen('m2')", :onmouseout => "mclosetime()",:class=>client_link%></li>
+  <% end %>
+  <% if current_user.user_permission.invocies ==1 %>
+  <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Invoices</a> 
     <div id="m3" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
       <ul>
         <li class="none"><a href="#">Invoice </a></li>
@@ -37,40 +40,46 @@ $.noConflict();
         <li><a href="#">Items</a> </li>
         <li><a href="#">Payment History</a> </li>
       </ul>
-    </div>
-  </li>
-  <!--<li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">Bank</a> -->
-    <li><%= link_to "Bank",url_options={:controller=>"bank", :action=>"index"}, html_options={:onmouseover=>"mopen('m4')", :onmouseout=>"mclosetime()"} %>
+    </div></li>
+   <% end %>
+ 
+    <% if current_user.user_permission.bank ==1 %>
+    <li><%= link_to "Bank",url_options={:controller=>"bank", :action=>"index"}, html_options={:onmouseover=>"mopen('m4')", :onmouseout=>"mclosetime()",:class=>bank_link} %>
     <div id="m4" onMouseOver="mcancelclosetime()" onMouseOut="mclosetime()">
       <ul>
         <li class="none">
-		<!--<a href="#">Upload Bank Statement</a>-->
 		<%= link_to "Upload Bank Statement",url_options={:controller=>"bank", :action=>"new"}%>
 		</li>
         <li>
-		<!--<a href="#">View List of all Uploaded Bank Statements </a>-->
 		<%= link_to "View List of all Uploaded Bank Statements",url_options={:controller=>"bank", :action=>"list"}%>
 		</li>
         <li>
-		<!--<a href="#">View Unallocated Items</a>-->
 		<%= link_to "View Unallocated Items",url_options={:controller=>"bank", :action=>"list_unallocated"}%>
 		</li>
       </ul>
     </div>
   </li>
-  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Credit Card</a>
+  <% end %>
+  
+  <% if current_user.user_permission.credit_card ==1 %>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Credit Card</a></li>
+  <% end %>
  
-  </li>
-  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Cash Expenses</a>
+  <% if current_user.user_permission.cash_expenses ==1 %>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Cash Expenses</a></li>
+  <% end %>
  
-  </li>
-  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Wages</a>
+  <% if current_user.user_permission.wages ==1 %>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Wages</a></li>
+  <% end %>
    
-  </li>
-  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Documents</a>
-   
-  </li>
+  <% if current_user.user_permission.documents ==1 %>
+  <li><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Documents</a> </li>
+  <% end %>
+  
+  <% if current_user.user_permission.reports ==1 %>
   <li style="margin:0px;"><a href="#" onmouseover="mopen('m5')" onmouseout="mclosetime()">Reports</a>
+  <% end %>
   
   
   </li>

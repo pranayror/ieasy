@@ -11,7 +11,7 @@
   <tr>
     <td><%=h sub_category.name %></td>
     <td><%=h sub_category.description %></td>
-    <td><%=h sub_category.category_id %></td>
+    <td><%=h sub_category.category.name%></td>
     <td><%= link_to 'Show', sub_category %></td>
     <td><%= link_to 'Edit', edit_sub_category_path(sub_category) %></td>
     <td><%= link_to 'Destroy', sub_category, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -6,8 +6,7 @@
       <%= render :partial=>'settingsheader' %>
       <div class="clear"></div>
       
-      <% path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
-	  <% form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+	  <% form_for @user_setting,:url=>update_settings_users_path ,:html=>{:multipart=>true} do |f| %>
 	  
 	<div class="setting">
         <div class="inter">
@@ -39,8 +38,7 @@
             <div class="left">Direct Links</div>
             <div class="right">
               <div class="span">
-              
-              <%=f.check_box(:direct_links,{},true, false) %>
+              <%= f.check_box :direct_links %>
               </div>
               <div class="label">Enabled (Strongly Recommended)</div>
               <div class="clear"></div>
@@ -50,7 +48,7 @@
             <div class="left">FreshBooks Branding</div>
             <div class="right">
               <div class="span">
-                 <%=f.check_box(:ieasy_branding,{},true, false) %>
+                 <%=f.check_box :ieasy_branding %>
               </div>
               <div class="label">Enabled </div>
               <div class="clear"></div>
@@ -104,7 +102,6 @@
           <div class="misc">
             <div class="left">Client</div>
             <div class="right">
-            client_welcome_message
             <%= f.text_area(:client_welcome_message,:id=>"textarea") %>
               <div class="clear"></div>
               <strong> This text will appear on your client home page. <a href="#">Preview client home page</a></strong> </div>
@@ -130,7 +127,7 @@
           <div class="clear"></div>
           <div style="margin-left:370px;">
           <%= submit_tag 'Save' ,:class=>'upgrade' %></div>
-          <div class="saveupgrade" style=" margin-left:10px; margin-top:20px; "><a href="#">Restore Defaults</a></div>
+         <!-- <div class="saveupgrade" style=" margin-left:10px; margin-top:20px; "><a href="#">Restore Defaults</a></div>-->
         </div>
       </div>
 	  

@@ -1,8 +1,10 @@
-<div class="clear"></div>
+<div class="container">
   <h1>Upload Bank Statement </h1>
-   <div class="clear"></div>
-  <% form_for :bank_statment, :url => {:controller=>'bank',:action=>'create'}, :html => { :multipart => true } do%>
+  <div class="container">
+   <% form_for :bank_statment, :url => {:controller=>'bank',:action=>'create'}, :html => { :multipart => true} do%>
    <%= file_field_tag :xcel_file %>
    <%= submit_tag "submit" %>
   <% end %>
+  </div>
+ </div> 
  

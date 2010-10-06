@@ -1,13 +1,12 @@
-<%= stylesheet_link_tag 'color_picker/colorpicker','color_picker/layout'%>
-<%= javascript_include_tag 'color_picker/colorpicker','color_picker/eye','color_picker/layout' %>
+
+
 <div  id="login_wrapper">
   <div  id="login_wrapper_main">
     <div class="innercontainer">
       <%= render :partial=>'settingsheader' %>
       <div class="clear"></div>
       
-      <%# path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
-	  <%# form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+	 <% form_for @user_premission,:url=>permissions_users_path,:html=>{:method=>:post} do |f| %>
 	  
 	<div class="setting">
         <div class="inter">
@@ -21,11 +20,39 @@ Features & Permissions</h1>
           <div class="permit">Administrator Permissions </div>
           <div class="features">
           <ul class="permissions">
-	<li class="enabled"><div><input type="checkbox" checked="" > <label for="admin_team">Wages</label></div></li>
-	<li class="enabled"><div><input type="checkbox" checked="" > <label for="admin_estimate">Reports</label></div></li>
-	<li ><div><input type="checkbox" checked="" > <label for="admin_timesheet">Time Tracking</label></div></li>
-	<li ><div><input type="checkbox"  checked="" i> <label for="admin_support">Support</label></div></li>
-	<li class="enabled"><div><input type="checkbox"  checked="" > <label for="admin_document">Documents</label></div></li>
+      <li class="client_premissions <% if @user_premission.clients==1%>enabled<%end%>">
+     <div><%=f.check_box :clients,{:class=>'permission_check'} %>
+     <label for="admin_team">Clients</label></div>
+     </li>
+     <li class="invocies_premissions <% if @user_premission.invocies==1%>enabled<%end%>">
+     <div><%=f.check_box :invocies ,{:class=>'permission_check'}%> 
+     <label for="admin_team">Invoice</label></div>
+     </li>
+    <li class="bank_premissions <% if @user_premission.bank==1%>enabled<%end%>">
+    <div><%=f.check_box :bank,{:class=>'permission_check'} %>
+     <label for="admin_team">Bank</label></div>
+     </li>
+    <li class="credit_card_premissions <% if @user_premission.credit_card==1%>enabled<%end%>"><div>
+	<%=f.check_box :credit_card,{:class=>'permission_check'} %>
+     <label for="admin_team">Credit Card</label></div>
+     </li>
+    <li class="cash_expenses_premissions <% if @user_premission.cash_expenses==1%>enabled<%end%>"><div>
+	<%=f.check_box :cash_expenses,{:class=>'permission_check'} %>
+     <label for="admin_team">Cash Expenses</label></div>
+     </li> 
+	<li class="wages_premissions <% if @user_premission.wages==1%>enabled<%end%>"><div>
+	<%=f.check_box :wages,{:class=>'permission_check'} %>
+     <label for="admin_team">Wages</label></div>
+     </li>
+     <li class="documents_premissions <% if @user_premission.documents==1%>enabled<%end%>"><div>
+	 <%=f.check_box :documents ,{:class=>'permission_check'}%>
+      <label for="admin_document">Documents</label></div>
+      </li>
+	<li class="reports_premissions <% if @user_premission.reports==1%>enabled<%end%>"><div>
+	<%=f.check_box :reports,{:class=>'permission_check'} %>
+     <label for="admin_estimate">Reports</label></div>
+     </li>
+	
 </ul>
  
           </div>
@@ -58,11 +85,13 @@ Features & Permissions</h1>
           </div>
           </div>
           <div class="clear"></div>
-          <div class="upgrade" style=" margin-left:390px; margin-top:20px;"><a href="#">Save</a></div>
+          <div style=" margin-left:390px; margin-top:20px;">
+          <%= submit_tag "Save" ,:class=>'upgrade' %>
+          </div>
         </div>
       </div>
 	  
-	  <%# end %>
+	  <% end %>
     </div>
     <div class="clear"></div>
   </div>

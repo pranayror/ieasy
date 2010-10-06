@@ -3,7 +3,10 @@ $(document).ready(function () {
 $('.signup_button').click(function() {
   $(".signup_fields").hide(); 
   $('.signup_fields').slideToggle("slow");
-  
+  $('html, body').animate({scrollTop: 700}, 800);
+  $('#user_company_name').focus();
+  $("#chosen_package_name").html($(this).attr("id"));
+  $("#chosen_package_price").html($(this).attr("id").toUpperCase()+" ACCOUNT");
 });
 });
 </script>
@@ -235,12 +238,12 @@ $('.signup_button').click(function() {
 	  </tr>
 	<tr class="pricingLastRow">
 		<td class="pricingLeft">&nbsp;</td>
-					<td class="package_58" rel="58"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package58 signup_button">Signup</a></div></td></tr></tbody></table></td>
-					<td class="package_57" rel="57"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package57 signup_button">Signup</a></div></td></tr></tbody></table></td>
-					<td class="package_56" rel="56"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package56 signup_button">Signup</a></div></td></tr></tbody></table></td>
-					<td class="package_55" rel="55"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package55 signup_button">Signup</a></div></td></tr></tbody></table></td>
-					<td class="package_59" rel="59"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package59 signup_button">Signup</a></div></td></tr></tbody></table></td>
-                    	<td class="package_59" rel="59"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" class="a_package59 signup_button">Signup</a></div></td></tr></tbody></table></td>
+					<td class="package_58" rel="58"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Free" class="a_package58 signup_button">Signup</a></div></td></tr></tbody></table></td>
+					<td class="package_57" rel="57"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Personal" class="a_package57 signup_button">Signup</a></div></td></tr></tbody></table></td>
+					<td class="package_56" rel="56"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Family" class="a_package56 signup_button">Signup</a></div></td></tr></tbody></table></td>
+					<td class="package_55"  rel="55"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Professional" class="a_package55 signup_button">Signup</a></div></td></tr></tbody></table></td>
+					<td class="package_59" rel="59"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Corporate" class="a_package59 signup_button">Signup</a></div></td></tr></tbody></table></td>
+                    	<td class="package_59" rel="59"><table align="center"><tbody><tr><td class="pricing_buttons"><div class="button_green"><a href="javascript://" id="Enterprise" class="a_package59 signup_button">Signup</a></div></td></tr></tbody></table></td>
 	  </tr>
       
       <tr class="pricingLastRow">
@@ -252,7 +255,6 @@ $('.signup_button').click(function() {
 					<div id="chosen_package_price">Free Account</div>
 					<div id="chosen_package_limits">
 						<span id="chosen_package_clients"></span>&nbsp;clients<br>
-						<span id="chosen_package_staff"></span>&nbsp;staff<br>
 						<span id="chosen_package_autobills"></span>
 					</div>
 				</div>

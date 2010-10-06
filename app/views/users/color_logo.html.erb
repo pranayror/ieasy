@@ -6,8 +6,8 @@
       <%= render :partial=>'settingsheader' %>
       <div class="clear"></div>
       
-      <% path = current_user.user_setting.blank? ? save_settings_users_path : update_settings_users_path %>
-	  <% form_for @user_setting,:url=>path ,:html=>{:multipart=>true} do |f| %>
+
+	  <% form_for @user_setting,:url=>update_settings_users_path ,:html=>{:multipart=>true} do |f| %>
 	  
 	
 	  
@@ -154,6 +154,7 @@ We recommend a logo size of 150 x 100 pixels. Logos wider than 150 pixels will b
              <div class="clear"></div>
           <div  style=" margin-left:400px; margin-top:20px;">
 		  <%= submit_tag 'Save' ,:class=>'upgrade' %>
+          <%= link_to 'Restore Defaults' ,{:controller=>'users',:action=>'restore_color_settings'}%>
 		  </div>
         </div>
 	  

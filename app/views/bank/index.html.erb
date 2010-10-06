@@ -7,8 +7,9 @@
         <li><%= link_to "View Unallocated Items", :action=>"list_unallocated" %></li>
       </ul>
 	  </div>-->
+<div class="container">	  
 <% if !@bank_statement.blank? %>
-<div class="container">
+
     <h1>Recently allocated bank statement </h1>
         <div class="clear"></div>
     <div class="bank">
@@ -26,7 +27,6 @@
               <td width="8%"  rel="59" class="titletab">Assign to</td>
               <!--<td width="17%"  rel="59" class="titletab">Document</td>-->
 	  </tr>
-<% if !@bank_statement.amount_allocations.blank? %>
 	  <% i=0 %>
 	  <% for statement in @bank_statement.amount_allocations %>
 	<tr>
@@ -44,29 +44,30 @@
 		       &nbsp;
 		     <%end%>
 			 </td>
+			 <td width="5%" rel="58" class="tabcolor" >
 			  <% if i==0 %>
 			      <% if @bank_statement.credit != 0 %>
-				     <td width="5%" rel="58" class="tabcolor" >
+				     
                       <%=@bank_statement.credit%>
-					 </td> 
+					  
 				  <% else %>
 				   <td width="5%" rel="58" class="tabcolor" >
-	                &nbsp;&nbsp;
+	                <%= "--" %>
 					</td>
 				  <% end %>
 		      <% else %>
-              <td width="5%" rel="58" class="tabcolor" >&nbsp;&nbsp;</td>
+               <%= "--" %>
 			  <% end %>
-			  
+			  </td>
 			  <td width="5%" class="tabcolor" >
 			  <% if i==0 %>
 			      <% if @bank_statement.debit != 0 %>
 				    <%=@bank_statement.debit%>
 				  <% else %>	
-			      &nbsp;&nbsp;
+			      <%= "--" %>
 				  <% end %>
 		      <% else %>
-                 &nbsp;&nbsp;
+                 <%= "--" %>
 			  <% end %>
 			  </td>
 			  <td width="6%" class="tabcolor" ><%= statement.amount %></td>
@@ -74,7 +75,7 @@
 			  <% if statement.user_tax_id != 0  %>
               <%= statement.user_tax.percent%>
 			  <% else %>
-			  &nbsp;&nbsp;
+			  <%= "--" %>
 			  <% end %>
 			  </td>
 			  <td width="11%"  rel="59" class="tabcolor"><%=@bank_statement.vendor_client%></td>
@@ -82,7 +83,7 @@
 			  <% if statement.category_id != 0 %>
 			   <%=statement.category.name%>
 			  <% else %>
-                &nbsp;&nbsp;
+                <%= "--" %>
                <% end %>				
 			   </td>
 			   
@@ -90,7 +91,7 @@
 			  <% if statement.sub_category_id != 0 %>
 			   <%= statement.sub_category.name %>
 			  <% else %>
-			   &nbsp;&nbsp;
+			   <%= "--" %>
 			  <% end %>
 			  </td>
 			  
@@ -98,14 +99,18 @@
 			  <% if statement.client_id != 0 %>
 			   <%= statement.client.organisation %>
 			  <% else %>
-			   &nbsp;&nbsp;
+			   <%= "--" %>
 			  <% end %>
 			  </td>
-             <!--<td width="17%"  rel="59" class="tabcolor"><a href="#"><img src="images/upload.png" alt="" border="0" /></a></td>-->
+			 <!-- <% if statement.doc_file_name != nil %>
+			    <td width="8%"  rel="59" class="tabcolor"><%= image_tag statement.doc.url(:thumb) %></td>
+			  <% else %>-->
+			     <!--<td width="17%"  rel="59" class="tabcolor"><a href="#"><img src="images/upload.png" alt="" border="0" /></a></td>-->       <!--<td width="17%"  rel="59" class="tabcolor">No document</td>
+			  <% end %>-->
 	  </tr>
 	  <% i = i+1 %>
-	  <% end %> 
-       <% if @bank_statement.unallocated_mny != 0 %>
+	 <% end %> 
+      <% if @bank_statement.unallocated_mny != 0 %>
 	  <tr>
 	         <td width="15%"  rel="58" class="tabcolor">&nbsp;</td>
 			  <td width="5%" class="tabcolor" >&nbsp;</td>
@@ -113,51 +118,18 @@
 			  <td width="6%" class="tabcolor">&nbsp;</td>
               <td width="7%" class="tabcolor"><%=@bank_statement.unallocated_mny%></td>
 			  <td width="11%"  rel="59" class="tabcolor">Unallocated</td>
-              <td width="7%"  rel="59" class="tabcolor">&nbsp;</td>
-              <td width="10%"  rel="59" class="tabcolor">&nbsp;</td>
+              <td width="7%"  rel="59" class="tabcolor">Unallocated</td>
+              <td width="10%"  rel="59" class="tabcolor">Unallocated</td>
               <td width="8%"  rel="59" class="tabcolor">unallocated</td>
               <td width="17%"  rel="59" class="tabcolor">unallocated</td>
 	  </td>
 	  </tr>
 	  <% end %>
-   <% else %>   
-        <tr>
-	         <td width="15%"  rel="58" class="tabcolor"><%= @bank_statement.transaction_date%></td>
-			  <td width="5%" class="tabcolor" ><%= @bank_statement.description %></td>
-			  
-			      <% if @bank_statement.credit != 0 %>
-				     <td width="5%" rel="58" class="tabcolor" >
-                      <%=@bank_statement.credit%>
-					 </td> 
-				  <% else %>
-				   <td width="5%" rel="58" class="tabcolor" >
-	                &nbsp;&nbsp;
-					</td>
-				  <% end %>
-		       <td width="5%" class="tabcolor" >
-			      <% if @bank_statement.debit != 0 %>
-				    <%=@bank_statement.debit%>
-				  <% else %>	
-			      &nbsp;&nbsp;
-				  <% end %>
-			  </td>
-              <td width="7%" class="tabcolor"><%=@bank_statement.unallocated_mny%></td>
-			  <td width="11%"  rel="59" class="tabcolor">Unallocated</td>
-              <td width="7%"  rel="59" class="tabcolor">unallocated</td>
-              <td width="10%"  rel="59" class="tabcolor">unallocated</td>
-              <td width="8%"  rel="59" class="tabcolor">unallocated</td>
-              <td width="17%"  rel="59" class="tabcolor">unallocated</td>
-	  </td>
-	  </tr>
-        
-     <% end %>
-     
 	  <tr style="display: blck;" id="subscribe"><td colspan="6" style="border-bottom: 0pt none; padding: 0pt;">
 			
 	  </td></tr>
 	</tbody></table>
-    </div>
- </div>
  <% else %>
  <h1> No records found</h1>
  <% end %>
+ </div>
