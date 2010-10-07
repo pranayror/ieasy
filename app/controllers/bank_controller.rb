@@ -50,13 +50,14 @@ if fields_mapped?
 		    credit  = row[1].to_f 
 		    amount = credit
 	    end
-          Bank.create(:transaction_date => row[0].to_date,
+         bank = Bank.new(:transaction_date => row[0].to_date,
                                :credit =>debit,
                                :debit => credit,
 			       :description=> row[2],
 			       :vendor_client=>row[3],
 			       :user_id=>current_user.id,
 			       :unallocated_mny=>amount)
+         bank.save(params[:doc])    
         end
         flash[:notice] = 'Uploaded successfully'
         redirect_to :action => :list
@@ -101,8 +102,8 @@ if fields_mapped?
    if params[:amount].to_f <= @bank_st.unallocated_mny || params[:amount].to_f != nil
      allocate_money = AmountAllocation.new(:amount=>params[:amount].to_f,:bank_id=>params[:id],
                             :user_tax_id=>params[:bank][:user_tax].to_i,:category_id=>params[:chain_select][:category].to_i,
-                            :sub_category_id=>params[:chain_select][:sub_category].to_i,:client_id=>params[:bank][:client])
-			    #,:doc=>params[:doc])
+                            :sub_category_id=>params[:chain_select][:sub_category].to_i,:client_id=>params[:bank][:client],:doc=>params[:doc])
+			    #~ #,:doc=>params[:doc])
         if allocate_money.save
 	   bank = Bank.find(params[:id])
             bank.unallocated_mny = bank.unallocated_mny-params[:amount].to_f

@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
     @search = Client.search(params[:search])
     if params[:search] && !params[:search].blank?
      
-       @clients = @search.all(:conditions=>["deleted LIKE ?",0])
+       @clients = @search.all(:conditions=>["deleted LIKE ?",0],:include=>:client_contacts)
        else
       #~ render :text => @clients.inspect and return
   @clients = current_user.clients.find(:all,:conditions=>["deleted LIKE ?",0])

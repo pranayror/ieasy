@@ -47,29 +47,28 @@
         </tr>
       <tr>
         <td align="right" valign="middle">First Name:</td>
-        <td align="left" valign="top"><input type="text" name="textfield2" id="textfield2" /></td>
+        <td align="left" valign="top">
+         <%= f.text_field :client_contacts_first_name_like, :id=>"textfield2",:size=>20 %>
+        </td>
       </tr>
        <tr>
         <td height="5" colspan="2" align="left" valign="middle"></td>
         </tr>
       <tr>
         <td align="right" valign="middle">Last Name:</td>
-        <td align="left" valign="top"><input type="text" name="textfield3" id="textfield3" /></td>
+        <td align="left" valign="top">
+        <%= f.text_field :client_contacts_last_name_like, :id=>"textfield2",:size=>20 %></td>
       </tr>
-       <tr>
-        <td height="5" colspan="2" align="left" valign="middle"></td>
-        </tr>
-      <tr>
-        <td align="right" valign="middle">Address:</td>
-        <td align="left" valign="top"><input type="text" name="textfield4" id="textfield4" /></td>
-      </tr>
+      
+      
     </table></td>
     <td width="10%" align="center" valign="top">&nbsp;</td>
     <td width="45%" align="center" valign="top"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td align="right" valign="middle">Email :</td>
         <td align="left" valign="top"><label>
-          <input type="text" name="textfield" id="textfield" />
+           <%= f.text_field :client_contacts_email_like, :id=>"textfield2",:size=>20 %>
+          
         </label></td>
       </tr>
        <tr>
@@ -77,22 +76,24 @@
         </tr>
       <tr>
         <td align="right" valign="middle">Phone :</td>
-        <td align="left" valign="top"><input type="text" name="textfield2" id="textfield2" /></td>
+        <td align="left" valign="top">
+        <%= f.text_field :client_contacts_mobile_like, :id=>"textfield2",:size=>20 %>
+        </td>
       </tr>
        <tr>
         <td height="5" colspan="2" align="left" valign="middle"></td>
         </tr>
-      <tr>
-        <td align="right" valign="middle">Note:</td>
-        <td align="left" valign="top"> <%= f.text_field :notes_like,:id=>"textfield3",:size=>20%></td>
-      </tr>
+     
     </table></td>
   </tr>
   <tr>
     <td colspan="3" align="center" valign="top">&nbsp;</td>
     </tr>
   <tr>
-    <td colspan="3" align="center" valign="middle"><a href="#"><img src="images/search.PNG" alt="" width="150" height="37" border="0" /></a><a href="#"><img src="images/reset.png" alt="" width="150" height="37" border="0" /></a></td>
+    <td colspan="3" align="center" valign="middle">
+    <%= image_submit_tag("/images/search.PNG") %>
+    <a href="javascript://" class="client_search_fields">
+    <img src="images/reset.png" alt="" width="150" height="37" border="0" /></a></td>
   </tr>
 </table>
 <%end%>
@@ -113,6 +114,11 @@
                 <td width="8%" align="left" ></td>
 			  </tr>      
         </thead>   
+        
+       <% if params[:search] && @clients.blank? %>
+      <tr><td colspan="5">
+       <div style="clear:both; font-weight:bold; margin:10px 0 10px 350px;">Sorry!! No results found</div></td></tr>
+      <% end %>   
  <% form_for :clients ,:url=>{:controller=>'clients',:action=>'update_status'}, :html=>{:id=>'client_status_form'} do %>       
 <%@clients.each do |client|%>
   <tr>

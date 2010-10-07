@@ -56,4 +56,11 @@ jQuery('.delete_clients').click(function() {
  }
 });
 
+
+ jQuery('.client_search_fields').click(function(){
+  jQuery("form").each(function() {
+	this.reset();
+   }); 
+});					   
+					   
 });

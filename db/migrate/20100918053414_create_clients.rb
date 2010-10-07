@@ -1,6 +1,7 @@
 class CreateClients < ActiveRecord::Migration
   def self.up
     create_table :clients do |t|
+      t.integer :user_id
       t.string :organisation
       t.boolean :send_invoices
       t.string :business_phone  

@@ -8,6 +8,7 @@ class CreateBanks < ActiveRecord::Migration
       t.text :description
       t.text :vendor_client
       t.float :unallocated_mny
+      t.string :bank_name
       t.timestamps
     end
   end
