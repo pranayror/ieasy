@@ -51,7 +51,7 @@ jQuery('.delete_clients').click(function() {
  jQuery('.status_value').attr("value",'deleted');
  jQuery('#client_status_form').submit();}
  else{
- alert("Please seleect atleat one client");
+ alert("Please select atleast one client");
   return false;
  }
 });
