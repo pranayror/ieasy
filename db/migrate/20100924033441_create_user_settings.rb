@@ -25,6 +25,7 @@ class CreateUserSettings < ActiveRecord::Migration
       t.integer :colum_headings
       t.text :client_welcome_message
       t.integer :client_document_access
+      t.integer :template, :default=>0
       t.timestamps
     end
   end

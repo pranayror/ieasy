@@ -13,4 +13,8 @@ class UserSetting < ActiveRecord::Base
       :small => '150>x100',
       :medium => '625>x333'
     }
+    
+    TEMPLATES = {'Clean Template' => 0, 'Classic Template' => 1}
+    
+    
 end

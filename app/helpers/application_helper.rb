@@ -24,13 +24,18 @@ def apply_auto_branding(object)
 	logo_image = (!object.user_setting.blank? && !object.user_setting.logo_file_name.blank?) ? object.user_setting.logo.url(:medium) : "/../images/logo.png"
   
 	if !object.user_setting.blank?
+    area1color =  !object.user_setting.area1_color.blank? ? object.user_setting.area1_color : "#274D75"
+    area2color = !object.user_setting.area2_color.blank? ? object.user_setting.area2_color : "#A1B7CE"
+    area3color = !object.user_setting.area3_color.blank? ? object.user_setting.area3_color : "#7295B2"
+    
+    
 	 %Q{
         <style type=\"text/css\">
              .loginuser {background: url(../..#{logo_image}) no-repeat;}
-             #myaccount {background: #{object.user_setting.area1_color};border-bottom:4px solid #{object.user_setting.area2_color};}
-             #sddm li a:hover  {background: #{object.user_setting.area2_color}}
-             #sddm li a  {background: #{object.user_setting.area3_color}}
-             #sddm li a.active {background: #{object.user_setting.area2_color}}
+             #myaccount {background: #{area1color};border-bottom:4px solid #{area2color};}
+             #sddm li a:hover  {background: #{area2color}}
+             #sddm li a  {background: #{area3color}}
+             #sddm li a.active {background: #{area2color}}
         </style>
       }
       end

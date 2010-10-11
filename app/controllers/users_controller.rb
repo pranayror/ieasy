@@ -86,6 +86,7 @@ class UsersController < ApplicationController
   
   
   def templates
+    @user_setting = current_user.user_setting
   end
   
   #~ def save_settings

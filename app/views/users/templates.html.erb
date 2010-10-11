@@ -6,7 +6,7 @@
       <div class="clear"></div>
       
      
-	  
+	  <%form_for @user_setting, :url => update_settings_users_path do |f|%>
 	<div class="setting">
         <div class="inter">
           <h1> 
@@ -24,11 +24,8 @@ Invoice & Estimate Template</h1>
           <div class="template">
           <div class="choose">Choose Your Template</div>
           <div class="nametemp">
-          <select name="new_invoice_template" id="new_invoice_template">
-				<option value="1">Clean Template</option>
-				<option selected="" value="0">Classic Template</option>
-			</select>
-            
+          
+            <%= f.select 'template', UserSetting::TEMPLATES%>
             <strong>Changes to your invoice template do not affect existing invoices.</strong>
           </div>
          
@@ -36,10 +33,12 @@ Invoice & Estimate Template</h1>
           
           
           <div class="clear"></div>
-          <div class="upgrade" style=" margin-left:330px; margin-top:20px;"><a href="#">Save</a></div>
+          <div  style=" margin-left:330px; margin-top:20px;">
+          <%= submit_tag 'Save',:class=>'upgrade' %>
+          </div>
         </div>
       </div>
-	  
+	  <%end%>
 	 
     </div>
     <div class="clear"></div>
