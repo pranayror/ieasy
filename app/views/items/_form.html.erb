@@ -1,0 +1,70 @@
+<% form_for @item do |f| %>
+<div class="container ">
+<div class="clBoth"></div>
+<h2 class="pt">New Item</h2><div class="clBoth"></div>
+	<h3 class="edit-section-header icon-item">Item Details</h3>
+	
+	<div class="span-35 append-bottom-1">
+		<div class="span-7 append-1 append-bottom-1 required ta_right bold">
+			<div style="cursor: pointer; display: inline;">Item Name</div>		</div>
+		<div class="span-27 append-bottom-1">
+       <%= f.text_field :name, :style=>"width: 140px;"%>      
+					</div>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<div style="cursor: pointer; display: inline;" >Description</div>		</div>
+		<div class="span-27 append-bottom-1">
+			             <%= f.text_area :description, :cols=>"70", :rows=>"3"%>      		</div>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<div style="cursor: pointer; display: inline;" >Unit Cost</div>		</div>
+		<div class="span-27 append-bottom-1">
+			 <%= f.text_field :unit_cost, :style=>"width: 80px;"%> 
+		</div>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<div style="cursor: pointer; display: inline;">Quantity</div>		</div>
+		<div class="span-27 append-bottom-1">
+			  <%= f.text_field :quantity, :style=>"width: 80px;"%>      
+		</div>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<div style="cursor: pointer; display: inline;">Taxes</div>		</div>
+		<div class="span-27 append-bottom-1">
+			<select name="tax1" id="tax1" class="formSelect"><option selected="selected" value="0">---</option><option value="1">tax1</option></select>  <select name="tax2" id="tax2" class="formSelect"><option selected="selected" value="0">---</option><option value="1">tax1</option></select> 			
+		</div>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<label for="inventoryYes">Track Inventory</label>		</div>
+		<div class="span-27 append-bottom-1">
+			<%=f.check_box :track_inventory%>
+		</div>
+	</div>	
+	
+	<div class="append-bottom-1" id="inventoryBox" style="">
+	
+		<h3 class="edit-section-header icon-inventory">Inventory</h3>
+		
+		<p class="edit-paragraph">
+			Please enter the number of this item that you currently have in 
+stock. This number will decrease every time you include this item in an 
+invoice. You can update this number later by editing this item.
+		</p>
+		<p class="edit-paragraph">
+			This will only affect new invoices. 
+		</p>
+		
+		<div class="span-7 append-1 append-bottom-1 ta_right bold">
+			<label for="inventory">Current Stock</label>		</div>
+		<div class="span-27 append-bottom-1">
+			  <%= f.text_field :current_stock, :style=>"width: 80px;"%>      
+		</div>		
+	</div>
+	
+	<div class="edit-end"></div>
+
+<table align="center" cellpadding="0" cellspacing="0"><tbody><tr><td><%=submit_tag("Save")%>&nbsp;<%=submit_tag("Save & Add Another")%></td></tr></tbody></table></form>
+
+</div>
+
+<%end%>

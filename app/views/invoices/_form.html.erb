@@ -1,0 +1,750 @@
+<% form_for @invoice do |f| %>
+
+<div class="clBoth"></div>
+			<div class="clearb"></div>
+			<div class="help_box" id="help_box">
+				<a href="javascript:void(0)" onclick="showHidePref('helpBoxes', 'hideNewInvoiceHelp');" class="float_right mar_l10"><img src="menuin_files/help-close.gif" id="help_close_button" border="0" height="19" width="19"></a>
+				<strong>You and your staff can create invoices on this page.</strong>
+ Invoices can be sent by e-mail, ground mail, printed at home, or saved 
+as a PDF. You can even have your customers pay online by enabling an 
+online payment gateway in your account settings.			</div>
+			<br>
+			<div class="clBoth"></div>
+
+
+
+	<table class="newTable" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr><td colspan="5"></td></tr>
+	</tbody></table>
+
+	<div class="span-24" style="position: relative;">
+	<div id="client_section">
+		<div class="span-3 required form-layout-left">
+			<label for="customerid" class="no-pointer">Client</label>
+		</div>
+		<div class="span-18 form-layout-right">
+			<select style="width: 304px;" name="customerid" id="customerid"><option selected="selected" value=""></option><option value="2">Sample Organization (Smith, John) </option>
+<option value="NEW" class="option_highlight">New Client</option></select> 
+			<div id="client_tags" style="display: none;">
+				<a id="currency_tag" href="#"><span>USD</span></a>
+				<a id="language_tag" href="#"><span></span></a>
+											</div>
+
+			<div id="client-help-bubble" class="tooble" style="display: block;">
+				<b></b>Please select a client for this invoice.
+			</div>
+		</div>
+
+		<div id="client_settings_box" class="clearb editinvoice" style="display: none;">
+	<div class="top"></div>
+	
+
+	<div class="bottom">
+		<div class="float_right">
+			<div class="button_green" id="save_advanced_settings"><a href="#">Save</a></div>
+		</div>
+	</div>
+</div>
+		<div id="contact-section" class="clearb" style="display: none;">
+			<div class="span-3 required form-layout-left">
+				<label class="no-pointer">Send To</label>
+			</div>
+			<div class="span-16 form-layout-right">
+				<div id="contact_info">
+					<!-- contacts go here -->
+				</div>
+			</div>
+		</div>
+	
+			
+		<div id="address-section" class="clearb" style="display: none;">
+			<div class="span-3 form-layout-left">
+				<label class="no-pointer">Address</label>
+			</div>
+			<div class="span-16 form-layout-right">
+				<div id="address">
+											<i>No mailing address specified for this client.</i>
+									</div>
+								<a id="edit-address" class="small-link" href="#">Edit Address</a>
+							</div>
+		</div>
+	
+		<div id="outstanding-expenses" class="clearb" style="display: none;">
+			<div class="span-3 form-layout-left"><label class="no-pointer">Expenses</label></div>
+			<div class="span-16 form-layout-right">
+				<span class="hl">This client has outstanding expenses.</span><br>
+				<a class="link-new small-link" href="#" id="add-expenses">Add to invoice</a>
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+<div class="span-14">
+		<div class="span-6 required form-layout-left">
+				<label for="invoice_number">Invoice Number</label>
+			</div>
+	<div class="span-7 form-layout-right">
+		<input onkeypress="return invoicenumberonly(this, event)" id="invoice_number" name="invoice_number" value="0000003" style="width: 130px;" maxlength="10" type="text">
+	</div>
+	
+		<div class="span-6 required form-layout-left">
+		<label for="js_date">Date of Issue</label>
+	</div>
+	<div class="span-7 form-layout-right">
+			
+	<input style="width: 110px;" name="js_date" id="js_date" value="10/15/10" size="10" type="text">
+			
+	<a href="#" onclick="document.getElementById('js_date').focus(); return false;" class="normal"><img src="menuin_files/cal.gif" alt="Click here to launch the calendar widget" border="0" height="16" width="16"></a>	<script type="text/javascript">
+		$(function() {
+			FbCalendar.formatType = 0;
+			FbCalendar.borderColor = '#0075CE';
+			var elem = document.getElementById("js_date");
+		    var cal = FbCalendar.create(elem, FbCalendar.SINGLE);
+		});
+	</script>
+	</div>
+		
+	
+	<div class="span-6 form-layout-left">
+		<label for="po_number">PO Number</label>
+	</div>
+	<div class="span-7 form-layout-right">
+		<input id="po_number" name="po_number" style="width: 130px;" type="text">
+	</div>
+
+	<div class="span-6 form-layout-left">
+		<label for="discount_value">Discount</label>
+	</div>
+	<div class="span-7 form-layout-right">
+		<input onkeypress="return numbersonly(this, event)" name="discount_value" id="discount_value" style="width: 30%;" maxlength="5" class="input-symbol-parent" type="text"><span class="input-symbol">%</span>
+	</div>
+
+			<div class="span-6 form-layout-left">
+			<label class="no-pointer">Online Payment</label>
+		</div>
+		<div class="span-7 form-layout-right">
+	        	   		    <div class="fs_11" style="padding-top: 2px; line-height: 16px;" id="gateway_setup_link"><a href="https://ebooks1.freshbooks.com/menu.php?route=payPlugin">Set up online payments</a></div>
+	   				</div>
+	
+	</div>
+
+<div style="clear: both;"></div><div id="invoice-lines">
+
+	<div id="progress-container" class="loader" style="display: none;">
+		<div id="progress-bar" class="progress"></div>
+		<div class="text"></div>
+	</div>
+
+	<!-- time entries -->
+	<table id="invoice-time" class="invoice-lines spreadsheet" style="" cellspacing="0">
+		<thead>
+			<tr>
+				<th style="width: 1px; padding: 0px;" class="first-column"><img src="menuin_files/spacer.gif" alt="" height="1" width="1"></th>
+				<td class="action-buttons">
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<th style="width: 124px;">Task</th>
+				<th style="width: 254px;">Time Entry Notes</th>
+				<th style="width: 68px;" class="ta_right">Rate</th>
+				<th style="width: 45px;" class="ta_right">Hours</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 72px;" class="ta_right last">Line Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<script type="text/html" id="invoice-time-row-tpl">
+			<tr style="display:none">
+				<td class="handle">
+					<div><img src="images/spreadsheet/drag-color.gif" /></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="images/spreadsheet/add.gif" /></a></div>
+					<div class="delete"><a href="#"><img src="images/spreadsheet/delete-color.gif" /></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="task-name-container"></div>
+				</td>
+				<td class="editable">
+					<textarea name="descrip[]">{desc}</textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" type="text" class="ta_right iefix-3 ie7fix-1" value="{unit_cost|html-attr-value}"/>
+				</td>
+				<td class="editable">
+					<input name="qty[]" type="text" class="ta_right iefix-3 ie7fix-1" value="{qty|html-attr-value}"/>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input type="hidden" name="price[]" value="0.00"/>
+					<input type="hidden" name="expenseid[]" value="{expenseid|html-attr-value}"/>
+					<input type="hidden" name="logid_list[]" value="{logid_list|html-attr-value}"/>
+					<input type="hidden" name="line_type[]" value="2"/>
+					<input type="hidden" name="todo_ids[]" value="{todo|html-attr-value}"/>
+					<input type="hidden" name="lineid[]" value="{lineid|html-attr-value}">
+				</td>
+			</tr>
+			</script>
+			
+			
+			<script type="text/html" id="new-task-row-tpl">
+			<tr class="inline-item">
+				<td class="inline-item-wrapper-left">
+					<span></span>
+					<div class="holder">
+						<div class="buttons iefix-5">
+							<div class="button_green" style="margin: -4px 5px 0 0;">
+								<a class="save" href="#"><b><strong>Save Task</strong></b></a>
+							</div> 
+							or <a class="cancel" href="#">Cancel</a>
+						</div>
+						<div id="item-msg">You are creating a new re-usable task.</div>
+					</div>
+				</td>
+				<td class="inline-item-wrapper-right">
+					<span></span>
+				</td>
+				<td class="first-column editable">
+					<input type="text" maxlength="15" name="item_name[]" />
+				</td>
+				<td class="editable">
+					<textarea name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input id="time_unit_cost" name="unit_cost[]" type="text" class="ta_right iefix-3 ie7fix-1" value=""/>
+				</td>
+				<td class="isdisabled">
+					<input disabled="" name="qty[]" type="text" class="ta_right iefix-3 ie7fix-1" value=""/>
+				</td>
+				<td class="editable has-combobox isdisabled">
+					<div class="tax1-container"></div>
+				</td>
+				<td class="editable has-combobox isdisabled">
+					<div class="tax2-container"></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input type="hidden" name="price[]" value="0.00"/>
+				</td>
+			</tr>
+			</script>
+			
+		<tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="task-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="2" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr><tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="task-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="2" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr><tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="task-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="2" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr></tbody>
+	</table>
+	
+	<!-- items -->
+	<table id="invoice-items" class="invoice-lines spreadsheet" style="" cellspacing="0">
+		<thead>
+			<tr>
+				<th style="width: 1px; padding: 0px;" class="first-column"><img src="menuin_files/spacer.gif" alt="" height="1" width="1"></th>
+				<td class="action-buttons">
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<th style="width: 124px;">Item</th>
+				<th style="width: 254px;">Description</th>
+				<th style="width: 68px;" class="ta_right">Unit Cost</th>
+				<th style="width: 45px;" class="ta_right">Qty</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 62px;">Tax</th>
+				<th style="width: 72px;" class="ta_right last">Line Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<script type="text/html" id="invoice-item-row-tpl">
+			<tr style="display:none">
+				<td class="handle">
+					<div><img src="images/spreadsheet/drag-color.gif" /></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="images/spreadsheet/add.gif" /></a></div>
+					<div class="delete"><a href="#"><img src="images/spreadsheet/delete-color.gif" /></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="item-name-container"></div>
+				</td>
+				<td class="editable">
+					<textarea name="descrip[]">{desc}</textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" type="text" class="ta_right iefix-3 ie7fix-1" value="{unit_cost|html-attr-value}"/>
+				</td>
+				<td class="editable">
+					<input name="qty[]" type="text" class="ta_right iefix-3 ie7fix-1" value="{qty|html-attr-value}"/>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input type="hidden" name="price[]" value="0.00"/>
+					<input type="hidden" name="expenseid[]" value="{expenseid|html-attr-value}"/>
+					<input type="hidden" name="logid_list[]" value="{logid_list|html-attr-value}"/>
+					<input type="hidden" name="line_type[]" value="{type|html-attr-value}"/>
+					<input type="hidden" name="todo_ids[]" value="{todo|html-attr-value}"/>
+					<input type="hidden" name="lineid[]" value="{lineid|html-attr-value}">
+				</td>
+			</tr>
+			</script>
+			
+			
+			<script type="text/html" id="new-item-row-tpl">
+			<tr class="inline-item">
+				<td class="inline-item-wrapper-left">
+					<span></span>
+					<div class="holder">
+						<div class="buttons iefix-5">
+							<div class="button_green" style="margin: -4px 5px 0 0;">
+								<a class="save" href="#"><b><strong>Save Item</strong></b></a>
+							</div>
+							or <a class="cancel" href="#">Cancel</a></div>
+						<div id="item-msg">You are creating a new re-usable item.</div>
+					</div>
+				</td>
+				<td class="inline-item-wrapper-right">
+					<span></span>
+				</td>
+				<td class="first-column editable">
+					<input type="text" maxlength="15" name="item_name[]" />
+				</td>
+				<td class="editable">
+					<textarea name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" type="text" class="ta_right iefix-3 ie7fix-1" value=""/>
+				</td>
+				<td class="editable">
+					<input name="qty[]" type="text" class="ta_right iefix-3 ie7fix-1" value=""/>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input type="hidden" name="price[]" value="0.00"/>
+				</td>
+			</tr>
+			</script>
+			
+		<tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="item-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr><tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="item-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr><tr style="">
+				<td class="handle">
+					<div><img src="menuin_files/drag-color.gif"></div>
+				</td>
+				<td class="action-buttons">
+					<div class="insert"><a href="#"><img src="menuin_files/add.gif"></a></div>
+					<div class="delete"><a href="#"><img src="menuin_files/delete-color.gif"></a></div>
+				</td>
+				<td class="first-column has-combobox editable">
+					<div class="item-name-container"><div class="dhx_combo_box" style="width: 124px;"><input readonly="readonly" style="width: 105px;" class="dhx_combo_input" autocomplete="off" type="text"><input value="" name="item_name[]" type="hidden"><input value="false" name="__new_item_name[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable">
+					<textarea style="overflow: hidden; display: block;" name="descrip[]"></textarea>
+				</td>
+				<td class="editable">
+					<input name="unit_cost[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable">
+					<input name="qty[]" class="ta_right iefix-3 ie7fix-1" type="text">
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax1-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax11[]" type="hidden"><input value="false" name="__new_tax11[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="editable has-combobox">
+					<div class="tax2-container"><div class="dhx_combo_box" style="width: 64px;"><input readonly="readonly" style="width: 45px;" class="dhx_combo_input" autocomplete="off" type="text"><input class="invTax" value="::" name="tax22[]" type="hidden"><input value="false" name="__new_tax22[]" type="hidden"><img src="menuin_files/combo_select.gif" class="dhx_combo_img"></div></div>
+				</td>
+				<td class="total">
+					<span class="ta_right">0.00</span><!-- price -->
+					<input name="price[]" value="0.00" type="hidden">
+					<input name="expenseid[]" value="" type="hidden">
+					<input name="logid_list[]" value="" type="hidden">
+					<input name="line_type[]" value="" type="hidden">
+					<input name="todo_ids[]" value="" type="hidden">
+					<input name="lineid[]" value="" type="hidden">
+				</td>
+			</tr></tbody>
+	</table>
+	
+	</div> <!-- invoice-lines -->
+<div class="totals">
+	<div class="rule top"></div>
+	
+    <div class="float_left">
+    	<div class="spreadsheet actions">
+    		<ul>
+    			<li style="display: block;" class="dropdown-button no-static">
+    				<span style="float: left;"><a href="#" onclick="return false;"><div></div>Add Line</a></span>
+    				<ul>
+    					<li><a href="#" id="new-time">Add Time Entry</a></li>
+    					<li><a href="#" id="new-item">Add Item</a></li>
+    				</ul>
+    			</li>
+    			<li style="display: none;" id="set_exchange_rate"><span><a href="#" id="apply-exchangelink" class="recalculate">Apply Exchange Rate</a></span></li>
+    		</ul>
+    	</div>
+    	
+    	    </div>
+		
+	<div class="box">
+		<table class="table-totals" cellspacing="0">
+			<thead style="display: none;">
+				<tr id="subtotal-row">
+					<td style="width: 20px;">&nbsp;<input value="0.00" style="width: 100%;" readonly="readonly" name="subtotal" type="hidden"></td>
+					<th style="width: 150px;">Subtotal</th>
+					<td class="last-column">$0.00</td>
+				</tr>
+
+				<tr id="discount-total-row" style="display: none;">
+					<td style="width: 20px;">&nbsp;<input value="0.00" style="width: 100%;" readonly="readonly" name="discount_total" type="hidden"></td>
+					<th style="width: 150px;">Discount</th>
+					<td class="last-column">0.00</td>
+				</tr>
+				
+				<!-- taxes go here -->
+				<tr class="divider">
+					<td><div></div></td>
+					<td><div></div></td>
+					<td><div></div></td>
+				</tr>
+			</thead>
+			<tbody>			
+				<tr id="amount-row">
+					<td style="width: 20px;">&nbsp;<input value="0.00" style="width: 100%;" readonly="readonly" name="amount" type="hidden"></td>
+					<th style="width: 150px;">Invoice Total <span class="currency">(USD)</span></th>
+					<td class="last-column">$0.00</td>
+				</tr>
+								<tr id="paid-row">
+					<td style="width: 20px;">&nbsp;<input style="width: 100%;" readonly="readonly" name="paid" value="0.00" type="hidden"></td>
+					<th style="width: 150px;">Paid to Date</th>
+					<td class="last-column">0.00</td>
+				</tr>
+				<tr id="outstanding-row" class="invoice-total-box">
+					<td style="width: 20px;">&nbsp;<input value="0.00" style="width: 100%; font-weight: bold;" readonly="readonly" name="outstanding" type="hidden"></td>
+					<th style="width: 150px;">Balance <span class="currency">(USD)</span></th>
+					<td class="last-column">$0.00</td>
+				</tr>
+							</tbody>
+		</table>
+	</div>
+
+	<div class="clearb"></div>
+
+	<div class="functions">
+				
+				
+		<span id="credit" style="display: none;">
+			<span class="hl">
+				<input disabled="disabled" style="width: 15px;" class="checkbox" value="1" name="apply_credit" id="apply_credit" type="checkbox">
+				<label style="cursor: pointer;" for="apply_credit">Apply credit of <span id="credit_amount"></span>&nbsp;as payment</label>
+			</span>
+		</span>
+
+	</div>
+	<div class="clearb"></div>
+</div>
+
+<div class="append-bottom-1 form-layout">
+	<div class="span-20 append-4 append-bottom-1 iefix-2">
+		<label for="terms">Terms</label>
+					(<a href="#" id="launch-termspop" rel="invoices" class="small-link">Set Default Terms</a>)
+					
+		<textarea style="width: 100%; height: 90px;" name="terms" id="terms"></textarea>
+	</div>
+
+	<div class="span-14 append-bottom-1">
+		<label for="notes">Notes Visible to Client</label>
+		<textarea style="width: 272px; height: 90px;" id="notes" name="notes"></textarea>
+	</div>
+
+	<div style="clear: both;"></div>
+</div>
+			<br>
+				<table align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr valign="top">
+			<td class="example" align="center" width="220">
+									<input name="save" class="invoice_action_button" onclick="return verifyOnSave();" alt="Save the invoice information entered." src="menuin_files/SaveAsDraft.gif" type="IMAGE" border="0"><br>
+					<br>
+					Save this invoice as a draft.  Your client will not be able to view this invoice until it is sent.
+							</td>
+			<td width="15">&nbsp;</td>
+			<td background="menuin_files/grayDottedVert.gif" width="1"><img src="menuin_files/spacerTrans.gif" height="1" width="1"></td>
+			<td width="15">&nbsp;</td>
+			<td class="example" align="center" width="230">
+				<div style="position: relative;">
+					<span id="pref_email" style="position: absolute; right: 0pt;">&nbsp;</span>
+					<div>
+	<input class="invoice_action_button" src="menuin_files/SendByEmail.gif" id="send_by_email_button" type="image">
+	<br><br>
+	Email this invoice to your client.
+</div>
+<script type="text/javascript" src="menuin_files/jquery_005.js"></script>
+<link type="text/css" href="menuin_files/facebox.css" rel="stylesheet">
+
+<div id="send_invoice_popup" style="display: none; width: 500px;">
+
+	<h3 id="invoicepop_title">Send Invoice By Email</h3>
+
+	<div class="prepend-top-1">
+
+		<div id="invoicepop_error" class="prepend-5 append-bottom-1 hide">
+			<span class="Error2"></span>
+		</div>
+
+		<div class="span-4 append-1 ta_right bold">
+			To
+		</div>
+		<div class="span-19 append-bottom-1">
+			<div id="invoicepop_to">&nbsp;</div>
+		</div>
+
+		<div class="span-4 append-1 ta_right bold">
+			<label for="invoicepop_subject">Subject</label>		</div>
+		<div class="span-19 append-bottom-1">
+			<input name="invoicepop_subject" id="invoicepop_subject" style="width: 350px;" type="text">
+		</div>
+
+		<div class="span-4 append-1 ta_right bold">
+			<label for="invoicepop_message">Message</label>		</div>
+					<div class="span-19 append-bottom-2">
+						<textarea name="invoicepop_message" id="invoicepop_message" style="width: 350px; height: 100px;"></textarea>
+						<div name="invoicepop_signature" id="invoicepop_signature" style="padding: 4px 0pt 0pt 4px;">
+							https://ebooks1.freshbooks.com/view/<em>XXXX</em><br><br>
+							Best regards,<br>
+ebooks (test@yopmail.com)						</div>
+					</div>
+		<div class="clearb" style="height: 34px;">
+			<table id="invoicepop_submit" align="center">
+				<tbody><tr><td>
+					<a class="butMedium" id="send-invoicepop" href="#"><span>Send</span></a>
+					<a class="butMedium" id="cancel-invoicepop" href="#"><span>Cancel</span></a>
+				</td></tr>
+			</tbody></table>
+			<div id="invoicepop_loading" style="display: none;">
+				<img src="menuin_files/loading2.gif" alt="" height="32" width="32">
+			</div>
+		</div>
+		<div class="example" style="padding: 5px 0pt;" align="center">
+			You can change the default message by going to Settings &gt; Emails.
+		</div>
+
+	</div>
+
+</div>
+
+<input name="email_x" id="email_x" value="" type="hidden">
+<input name="email_subject" id="email_subject" value="" type="hidden">
+<input name="email_message" id="email_message" value="" type="hidden">
+
+
+
+				</div>
+			</td>
+			<td width="15">&nbsp;</td>
+			<td background="menuin_files/grayDottedVert.gif" width="1"><img src="menuin_files/spacerTrans.gif" height="1" width="1"></td>
+			<td width="15">&nbsp;</td>
+			<td class="example" align="center" width="230">
+				<div style="position: relative;">
+					<span id="pref_gmail" style="position: absolute; right: 0pt;">&nbsp;</span>
+					<input class="invoice_action_button" name="gmail" onclick="return verify4();" alt="Save and send this invoice to your client by snail mail." src="menuin_files/SendByPost.gif" type="IMAGE" border="0"><br>
+					<br>
+					Send a hard copy of this invoice to your client via <a href="javascript:LearnMore()">snail mail</a>.
+					<br><br>You have 2 stamps. <a href="javascript:stamps();">Buy stamps</a><br>or <a href="javascript:sample();">send a free sample</a>.
+				</div>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td colspan="9" class="example" align="center"><br> <img src="menuin_files/greenStar.gif" style="vertical-align: middle;" alt="" height="17" width="17">&nbsp; This is how your client likes to receive invoices.</td>
+		</tr>
+	</tbody></table>
+			<br>
+
+	</div>
+	<%end%>

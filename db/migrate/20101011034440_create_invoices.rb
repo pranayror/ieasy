@@ -10,7 +10,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.boolean :archive
       t.boolean :delete
       t.boolean :recurring
-      t.integer :ocuurence
+      t.integer :occurence
       t.integer :frequency_id
       t.date  :start_date
       t.timestamps

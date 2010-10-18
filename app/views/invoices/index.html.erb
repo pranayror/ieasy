@@ -1,0 +1,41 @@
+
+
+
+
+
+<div  id="login_wrapper">
+  <div  id="login_wrapper_main">
+    <div class="container">
+    <div class="listoffclients">
+    <span>List of Invoices</span>
+    <label><%= link_to "New Invoice", new_invoice_path%></label>	
+    </div>
+    <div class="clients">
+ <div class="arrow"> <a href="#"><img src="/images/arrow2.png" alt="" /></a></div>
+    
+    <div class="iconmenu">
+<ul>
+
+<li><span> <img src="/images/icon1.png" alt="" /> </span><a href="javascript://" class="archive_clients">Archive</a></span></li>
+<li><span> <img src="/images/icon2.png" alt="" /> </span><a href="javascript://" class="delete_clients">Delete</a></li>
+<li><span> <img src="/images/icon3.png" alt="" /> </span><a href="#">Email</a></span></li>
+<li><span> <img src="/images/icon4.png" alt="" /> </span><a href="#">Invoice</a></span></li>
+</ul>
+</div>
+    
+     
+       </div>
+     
+   
+  </div>
+</div>
+
+
+<div class="legend" id="legend_box">
+			
+			<h4>Invoice Status Legend</h4>
+			<div class="statusPending">draft</div><p>Invoice created, but you have not notified your client. <span></span>Your client will not see this invoice if they login.</p><br class="clearb"><div class="statusSend">sent</div><p>Your client has been notified. When they login the <span></span>invoice will be visible for printing and payment.</p><br class="clearb"><div class="statusViewed">viewed</div><p>Your client has logged in and selected the invoices tab <span></span>since you notified them that this invoice was ready.</p><br class="clearb"><div class="statusDisputed">disputed</div><p>Your client has disputed this invoice. Click on this invoice to view their comments.</p><br class="clearb"><div class="statusPaid">paid</div><p>Your client has paid this invoice - either online or you <span></span>have received their funds and updated your records.</p><br class="clearb"><div class="statusPartial">partial</div><p>Your client has partially paid this invoice. Hover over the total to see the amount outstanding.</p><br class="clearb"><div class="boxHighlight"><div><img src="/images/spacer.gif" alt="" height="1" width="1"></div></div><p>Invoice sent by snail mail.</p><br class="clearb">			<div class="clearb"><img src="/images/spacer.gif" alt="" height="1" width="1"></div>
+		</div>
+</div>
+
+
